@@ -1,0 +1,29 @@
+{
+    "name": "ukadev/blogfolio",
+    "description": "Blog and prtfolio System using Sintara (its based on Laravel 4)",
+    "keywords": ["laravel","blogfolio","theme","admin","cms","panel","administration","blog","portfolio"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ukadev",
+            "email": "mail@ukadev.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "4.2.*",
+        "mrjuliuss/syntara": "dev-master",
+        "thomaswelton/laravel-gravatar": "dev-master",
+        "hieu-le/active": "dev-master"
+    },
+    "autoload": {
+        "classmap": [
+            "src/migrations",
+            "src/helpers"
+        ],
+        "psr-0": {
+            "Ukadev\\Blogfolio\\": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}

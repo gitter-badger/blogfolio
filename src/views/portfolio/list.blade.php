@@ -1,0 +1,1 @@
+app/views/Admin/portfolio//list.blade.php
