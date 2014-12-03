@@ -1,12 +1,12 @@
 @extends(Config::get('syntara::views.master'))
 
 @section('content')
-<script src="{{ asset('/admin/js/posts.js') }}"></script>
+<script src="{{ asset('packages/ukadev/blogfolio/js/dashboard/posts.js') }}"></script>
 <div class="row">
     <div class="col-lg-12">
         <section class="box box-primary">
             <div class="box-header">
-                <h3 class="box-title">{{ trans("admin/navigation.posts") }}</h3>
+                <h3 class="box-title">{{ trans("blogfolio::navigation.posts") }}</h3>
             </div>
             <form class="form" id="create-post-form" method="PUT" onsubmit="return false;">
             	<div class="box-body clearfix">

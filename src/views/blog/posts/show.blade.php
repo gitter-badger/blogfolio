@@ -1,12 +1,12 @@
 @extends(Config::get('syntara::views.master'))
 
 @section('content')
-<script src="{{ asset('/admin/js/posts.js') }}"></script>
+<script src="{{ asset('packages/ukadev/blogfolio/js/dashboard/posts.js') }}"></script>
 <div class="row">
     <div class="col-lg-12">
         <section class="box box-primary">
             <div class="box-header">
-                <h3 class="box-title">{{ trans("admin/navigation.posts") }}</h3>
+                <h3 class="box-title">{{ trans("blogfolio::navigation.posts") }}</h3>
             </div>
             <form class="form" id="edit-post-form" method="PUT" onsubmit="return false;">
             	<div class="box-body clearfix">
@@ -19,21 +19,39 @@
 		                        		:</label>
 		                        		<input type="text" class="form-control" id="{{$lang->locale}}-title" name="{{$lang->locale}}-title" value='{{$data->title}}'>
 									@endif
+									<?php $titleLang[] = $data->lang_id ?>
 								@endforeach
 	                    </div>
                     @endforeach
-	                @foreach ($post->postData as $key => $data)
+                    @foreach ($langs as $lang)
+						@if (!in_array($lang->id, $titleLang))
+							<label for="{{$lang->locale}}-title">{{ trans('Title') }}
+								{{ $lang->name }}
+                    		:</label>
+                    		<input type="text" class="form-control" id="{{$lang->locale}}-title" name="{{$lang->locale}}-title" value=''>
+						@endif
+					@endforeach
+					@foreach ($langs as $lang)
 	                    <div class="form-group">
-								@foreach ($langs as $lang)
-									@if ($data->lang_id == $lang->id)
-	                        			<label for="{{$lang->locale}}-content">{{ trans('Content') }}
+    			            @foreach ($post->postData as $key => $data)
+								@if ($data->lang_id == $lang->id)
+                        			<label for="{{$lang->locale}}-content">{{ trans('Content') }}
 										{{ $lang->name }}
-				                        :</label>
-				                        <textarea class="form-control" id="{{$lang->locale}}-content" name="{{$lang->locale}}-content">{{$data->content}}</textarea>
-									@endif
-								@endforeach
+			                        :</label>
+			                        <textarea class="form-control" id="{{$lang->locale}}-content" name="{{$lang->locale}}-content">{{$data->content}}</textarea>
+								@endif
+								<?php $contentLang[] = $data->lang_id ?>
+							@endforeach
 	                    </div>
 	                @endforeach
+					@foreach ($langs as $lang)
+						@if (!in_array($lang->id, $contentLang))
+							<label for="{{$lang->locale}}-content">{{ trans('Content') }}
+								{{ $lang->name }}
+	                        :</label>
+	                        <textarea class="form-control" id="{{$lang->locale}}-content" name="{{$lang->locale}}-content"></textarea>
+						@endif
+					@endforeach
 	                    <div class="form-group">
 	                        {{ Form::label('active', trans('Active ?')) }}
 	                       	{{ Form::checkbox('active', 1, true) }}

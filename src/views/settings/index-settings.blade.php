@@ -1,12 +1,12 @@
 @extends(Config::get('syntara::views.master'))
 
 @section('content')
-<script src="{{ asset('/admin/js/settings.js') }}"></script>
+<script src="{{ asset('packages/ukadev/blogfolio/js/dashboard/settings.js') }}"></script>
 <div class="row">
     <div class="col-lg-6">
         <section class="box box-primary">
             <div class="box-header">
-                <h3 class="box-title">{{ trans("admin/breadcrumbs.Globalsettings") }}</h3>
+                <h3 class="box-title">{{ trans("blogfolio::breadcrumbs.Globalsettings") }}</h3>
             </div>
             <form class="form" id="update-settings-form" method="PUT" onsubmit="return false;">
             	<div class="box-body clearfix">

@@ -21,9 +21,12 @@
         <link href="{{ asset("packages/ukadev/blogfolio/Blogfolio/css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css") }}" rel="stylesheet" type="text/css" />
         <!-- Theme style -->
         <link href="{{ asset("packages/ukadev/blogfolio/Blogfolio/css/Blogfolio.css") }}" rel="stylesheet" type="text/css" />
-
+		<!--  text editor -->
+        <link rel="stylesheet" href="{{ asset("packages/ukadev/blogfolio/Blogfolio/editor/summernote.css") }}">
         <!-- jakubsacha css fix -->
         <link href="{{ asset("packages/ukadev/blogfolio/css/Blogfolio.css") }}" rel="stylesheet" type="text/css" />
+        <!-- bootstrap css tags -->
+        <link href="{{ asset("packages/ukadev/blogfolio/css/tags.css") }}" rel="stylesheet" type="text/css" />
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -74,10 +77,15 @@
         <script src="{{ asset("packages/ukadev/blogfolio/Blogfolio/js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js") }}" type="text/javascript"></script>
         <!-- iCheck -->
         <script src="{{ asset("packages/ukadev/blogfolio/Blogfolio/js/plugins/iCheck/icheck.min.js") }}" type="text/javascript"></script>
-
+		<!-- Bootstrap WYSIHTML5 -->
+        <script src="{{ asset("packages/ukadev/blogfolio/Blogfolio/editor/summernote.js") }}" type="text/javascript"></script>
         <!-- blogfolio App -->
         <script src="{{ asset("packages/ukadev/blogfolio/Blogfolio/js/Blogfolio/app.js") }}" type="text/javascript"></script>
         <script src="{{ asset("packages/ukadev/blogfolio/js/app.js") }}" type="text/javascript"></script>
+        <!-- Bootstrap Tags js -->
+        <script src="{{ asset("packages/ukadev/blogfolio/js/tags.js") }}" type="text/javascript"></script>
+        <!-- Extra functions for the Admin Panel -->
+        <script src="{{ asset("packages/ukadev/blogfolio/js/extra.js") }}" type="text/javascript"></script>
 
     </body>
 </html>

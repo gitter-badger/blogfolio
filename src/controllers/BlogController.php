@@ -2,6 +2,7 @@
 
 
 use MrJuliuss\Syntara\Controllers\BaseController;
+use Ukadev\Blogfolio\Helpers;
 
 class BlogController extends \BaseController {
 
@@ -61,9 +62,9 @@ class BlogController extends \BaseController {
 		$cats = Cat::get();
 		$lang = new Language();
 		$langs = $lang->where(array('active' => 1))->take(3)->get();
-        $this->layout = View::make('admin.blog.categories.index', compact('cats', 'langs'));
+        $this->layout = View::make('blogfolio::blog.categories.index', compact('cats', 'langs'));
         $this->layout->title = trans('Categorias');
-        $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.categories');
+        $this->layout->breadcrumb = Config::get('blogfolio::breadcrumbs.categories');
 	}
 
 	/**
@@ -97,14 +98,14 @@ class BlogController extends \BaseController {
         // ajax: reload only the content container
         if(Request::ajax())
         {
-            $html = View::make('admin.blog.posts.list', array('posts' => $posts))->render();
+            $html = View::make('blogfolio::blog.posts.list', array('posts' => $posts))->render();
 
             return Response::json(array('html' => $html));
         }
 
-        $this->layout = View::make('admin.blog.posts.index', compact('posts','langs'));
+        $this->layout = View::make('blogfolio::blog.posts.index', compact('posts','langs'));
         $this->layout->title = trans('Posts');
-        $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.posts');
+        $this->layout->breadcrumb = Config::get('blogfolio::breadcrumbs.posts');
 	}
 
 	/**
@@ -131,14 +132,14 @@ class BlogController extends \BaseController {
         // ajax: reload only the content container
         if(Request::ajax())
         {
-            $html = View::make('admin.blog.comments.list', array('comments' => $comments))->render();
+            $html = View::make('blogfolio::blog.comments.list', array('comments' => $comments))->render();
 
             return Response::json(array('html' => $html));
         }
 
-        $this->layout = View::make('admin.blog.comments.index', compact('comments'));
+        $this->layout = View::make('blogfolio::blog.comments.index', compact('comments'));
         $this->layout->title = trans('Comments');
-        $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.comments');
+        $this->layout->breadcrumb = Config::get('blogfolio::breadcrumbs.comments');
 	}
 
 	/**
@@ -151,9 +152,9 @@ class BlogController extends \BaseController {
 	{
 		$lang = new Language();
 		$langs = $lang->where(array('active' => 1))->get();
-        $this->layout = View::make('admin.blog.categories.new', compact('langs'));
+        $this->layout = View::make('blogfolio::blog.categories.new', compact('langs'));
         $this->layout->title = trans('Categorias');
-        $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.categories');
+        $this->layout->breadcrumb = Config::get('blogfolio::breadcrumbs.categories');
 	}
 
 	/**
@@ -165,11 +166,12 @@ class BlogController extends \BaseController {
 	public function newPost()
 	{
 		$lang = new Language();
-		$cats = CatData::where(array('lang_id' => Settings::get('site_admin_lang')))->get();
 		$langs = Language::where(array('active' => 1))->get();
-        $this->layout = View::make('admin.blog.posts.new', compact('langs', 'cats'));
+
+		$cats = CatData::where(array('lang_id' => Settings::get('site_admin_lang')))->get();
+        $this->layout = View::make('blogfolio::blog.posts.new', compact('langs', 'cats'));
         $this->layout->title = trans('Posts');
-        $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.posts');
+        $this->layout->breadcrumb = Config::get('blogfolio::breadcrumbs.posts');
 	}
 
 	/**
@@ -184,9 +186,9 @@ class BlogController extends \BaseController {
 		$cat = $this->cat->find($id);
 		$lang = new Language();
 		$langs = $lang->where(array('active' => 1))->get();
-		$this->layout = View::make('admin.blog.categories.show', compact('cat', 'langs'));
+		$this->layout = View::make('blogfolio::blog.categories.show', compact('cat', 'langs'));
         $this->layout->title = trans('Categorias');
-        $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.categories');
+        $this->layout->breadcrumb = Config::get('blogfolio::breadcrumbs.categories');
 	}
 
 	/**
@@ -202,9 +204,13 @@ class BlogController extends \BaseController {
 		$cats = CatData::where(array('lang_id' => Settings::get('site_admin_lang')))->get();
 		$lang = new Language();
 		$langs = $lang->where(array('active' => 1))->get();
-		$this->layout = View::make('admin.blog.posts.show', compact('post', 'langs', 'cats'));
+		$activeLangs = Language::select('id')->where(array('active' => 1))->get();
+		foreach ($activeLangs as $actual) {
+			$actualLangs[] = $actual->id;
+		}
+		$this->layout = View::make('blogfolio::blog.posts.show', compact('post', 'langs', 'cats', 'actualLangs'));
         $this->layout->title = trans('Posts');
-        $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.posts');
+        $this->layout->breadcrumb = Config::get('blogfolio::breadcrumbs.posts');
 	}
 
 	/**
@@ -217,9 +223,9 @@ class BlogController extends \BaseController {
 	public function showComment($id)
 	{
 		$comment = $this->comment->find($id);
-		$this->layout = View::make('admin.blog.comments.show', compact('comment'));
+		$this->layout = View::make('blogfolio::blog.comments.show', compact('comment'));
         $this->layout->title = trans('Comments');
-        $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.comments');
+        $this->layout->breadcrumb = Config::get('blogfolio::breadcrumbs.comments');
 	}
 
 	/**
@@ -283,7 +289,7 @@ class BlogController extends \BaseController {
 	        	$postData->lang_id = $lang->id;
 	        	$postData->content = Input::get($lang->locale.'-content');
 	        	$postData->title = Input::get($lang->locale.'-title');
-	        	$postData->slug = Slug::generate(Input::get($lang->locale.'-title'));
+	        	$postData->slug = $this->slug(Input::get($lang->locale.'-title'));
 
 				$post->postData()->save($postData);
 			}
@@ -351,7 +357,7 @@ class BlogController extends \BaseController {
 		        	$postData->lang_id = $lang->id;
 		        	$postData->content = Input::get($lang->locale.'-content');
 		        	$postData->title = Input::get($lang->locale.'-title');
-		        	$postData->slug = Slug::generate(Input::get($lang->locale.'-title'));
+		        	$postData->slug =$this->slug(Input::get($lang->locale.'-title'));
 
 					$post->postData()->save($postData);
 				}
@@ -443,6 +449,32 @@ class BlogController extends \BaseController {
         }
 
         return Response::json(array('commentDeleted' => true, 'message' => trans('El comentario se ha borrado correctamente'), 'messageType' => 'success'));
+	}
+
+
+	public static function slug($text)
+	{
+		$text = html_entity_decode($text, ENT_QUOTES, 'UTF-8');
+        // replace non letter or digits by -
+        $text = preg_replace('~[^\\pL\d.]+~u', '-', $text);
+
+        // trim
+        $text = trim($text, '-');
+        setlocale(LC_CTYPE, 'en_GB.utf8');
+        // transliterate
+        if (function_exists('iconv')) {
+           $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+        }
+
+        // lowercase
+        $text = strtolower($text);
+        // remove unwanted characters
+        $text = preg_replace('~[^-\w.]+~', '', $text);
+        if (empty($text)) {
+           return 'empty_$';
+        }
+
+        return $text;
 	}
 
 }

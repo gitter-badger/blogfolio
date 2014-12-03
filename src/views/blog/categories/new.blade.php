@@ -1,12 +1,12 @@
-@extends(Config::get('syntara::views.master'))
+@extends(Config::get('blogfolio::views.master'))
 
 @section('content')
-<script src="{{ asset('/admin/js/categories.js') }}"></script>
+<script src="{{ asset('packages/ukadev/blogfolio/js/dashboard/categories.js') }}"></script>
 <div class="row">
     <div class="col-lg-6">
         <section class="box box-primary">
             <div class="box-header">
-                <h3 class="box-title">{{ trans("admin/navigation.categories") }}</h3>
+                <h3 class="box-title">{{ trans("blogfolio::navigation.categories") }}</h3>
             </div>
             <form class="form" id="create-category-form" method="PUT" onsubmit="return false;">
             	<div class="box-body clearfix">

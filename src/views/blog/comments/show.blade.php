@@ -1,12 +1,12 @@
 @extends(Config::get('syntara::views.master'))
 
 @section('content')
-<script src="{{ asset('/admin/js/comments.js') }}"></script>
+<script src="{{ asset('packages/ukadev/blogfolio/js/dashboard/comments.js') }}"></script>
 <div class="row">
     <div class="col-lg-12">
         <section class="box box-primary">
             <div class="box-header">
-                <h3 class="box-title">{{ trans("admin/navigation.comments") }}</h3>
+                <h3 class="box-title">{{ trans("blogfolio::navigation.comments") }}</h3>
             </div>
             <form class="form" id="edit-comment-form" method="PUT" onsubmit="return false;">
             	<div class="box-body clearfix">

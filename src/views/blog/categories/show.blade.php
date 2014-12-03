@@ -1,7 +1,7 @@
 @extends(Config::get('syntara::views.master'))
 
 @section('content')
-<script src="{{ asset('/admin/js/categories.js') }}"></script>
+<script src="{{ asset('packages/ukadev/blogfolio/js/dashboard/categories.js') }}"></script>
 <div class="row">
     <div class="col-lg-6">
         <section class="box box-primary">
@@ -10,18 +10,27 @@
             </div>
             <form class="form" id="edit-category-form" method="POST" onsubmit="return false;">
             	<div class="box-body clearfix">
-                    @foreach ($cat->catData as $key => $data)
+					@foreach ($langs as $lang)
                     	<div class="form-group">
-	                        <label for="lang_id-{{$data->lang_id}}">{{ trans('Name') }}
-								@foreach ($langs as $lang)
-									@if ($data->lang_id == $lang->id)
+                			@foreach ($cat->catData as $key => $data)
+								@if ($data->lang_id == $lang->id)
+	                        		<label for="lang_id-{{$data->lang_id}}">{{ trans('Name') }}
 										{{ $lang->name }}
-									@endif
-								@endforeach
-	                        :</label>
-	                        <input type="text" class="form-control" id="lang_id-{{$data->lang_id}}" name="lang_id-{{$data->lang_id}}" value='{{$data->name}}'>
+	                        		:</label>
+	                        		<input type="text" class="form-control" id="lang_id-{{$data->lang_id}}" name="lang_id-{{$data->lang_id}}" value='{{$data->name}}'>
+								@endif
+								<?php $catLang[] = $data->lang_id ?>
+							@endforeach
 	                    </div>
                     @endforeach
+                     @foreach ($langs as $lang)
+						@if (!in_array($lang->id, $catLang))
+							<label for="lang_id-{{$lang->id}}">{{ trans('Name') }}
+								{{ $lang->name }}
+                    		:</label>
+                    		<input type="text" class="form-control" id="lang_id-{{$lang->id}}" name="lang_id-{{$lang->id}}" value=''>
+						@endif
+					@endforeach
                     <div class="box-footer">
                    		<button id="update-settings" class="btn btn-primary">{{ trans('syntara::all.update') }}</button>
                    	</div>
