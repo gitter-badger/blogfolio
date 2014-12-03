@@ -20,8 +20,11 @@ class BlogfolioServiceProvider extends ServiceProvider {
 	{
 		$this->package('ukadev/blogfolio');
 
+		include __DIR__ . '/../../routes.php';
+
 		// Override Syntara Config.
         app('config')->set('syntara::views', app('config')->get('blogfolio::views'));
+        app('config')->set('syntara::breadcrumbs', app('config')->get('blogfolio::breadcrumbs'));
         $this->registerHelpers();
 	}
 

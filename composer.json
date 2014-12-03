@@ -19,7 +19,8 @@
     "autoload": {
         "classmap": [
             "src/migrations",
-            "src/helpers"
+            "src/helpers",
+            "src/controllers"
         ],
         "psr-0": {
             "Ukadev\\Blogfolio\\": "src/"

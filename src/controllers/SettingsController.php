@@ -1,6 +1,6 @@
 <?php
 
-use MrJuliuss\Syntara\Controllers\BaseController;
+use Ukadev\Blogfolio\Controllers\BaseController;
 
 
 class SettingsController extends \BaseController {
@@ -24,8 +24,8 @@ class SettingsController extends \BaseController {
 		$settings = Settings::all();
 		$templates = Template::get();
 		$langs = Language::get();
-		$this->layout = View::make('admin.settings.index-settings', compact('settings', 'templates', 'langs'));
-        $this->layout->title = trans('admin.settings.titles.list');
+		$this->layout = View::make('blogfolio::settings.index-settings', compact('settings', 'templates', 'langs'));
+        $this->layout->title = trans('blogfolio::settings.titles.list');
         $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.settings');
 	}
 
