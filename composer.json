@@ -13,7 +13,7 @@
         "php": ">=5.4.0",
         "illuminate/support": "4.2.*",
         "mrjuliuss/syntara": "1.2.*",
-        "thomaswelton/laravel-gravatar": "dev-master",
+        "thomaswelton/laravel-gravatar": "0.1.x",
         "hieu-le/active": "dev-master"
     },
     "autoload": {
