@@ -5,7 +5,7 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Ukadev",
+            "name": "Diego Pazos",
             "email": "mail@ukadev.com"
         }
     ],
@@ -13,14 +13,17 @@
         "php": ">=5.4.0",
         "illuminate/support": "4.2.*",
         "mrjuliuss/syntara": "1.2.*",
-        "thomaswelton/laravel-gravatar": "0.1.x",
-        "hieu-le/active": "dev-master"
+        "thomaswelton/laravel-gravatar": "dev-master",
+        "hieu-le/active": "dev-master",
+        "anlutro/l4-settings": "dev-master"
     },
     "autoload": {
         "classmap": [
             "src/migrations",
             "src/helpers",
-            "src/controllers"
+            "src/controllers",
+            "src/models",
+            "src/Views"
         ],
         "psr-0": {
             "Ukadev\\Blogfolio\\": "src/"

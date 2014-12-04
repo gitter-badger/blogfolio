@@ -12,9 +12,11 @@ class PortfolioController extends \BaseController {
 	{
 
 		$portfolios = Portfolio::get();
+
+
 		$lang = new Language();
 		$langs = $lang->where(array('active' => 1))->take(3)->get();
-        $this->layout = View::make('admin.portfolio.index', compact('portfolios', 'langs'));
+        $this->layout = View::make('blogfolio::portfolio.index',  compact('portfolios', 'langs'));
         $this->layout->title = trans('Portoflios');
         $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.portfolios');
 	}
@@ -25,9 +27,13 @@ class PortfolioController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function newPortfolio()
 	{
-		//
+		$lang = new Language();
+		$langs = $lang->where(array('active' => 1))->get();
+		$this->layout = View::make('blogfolio::portfolio.new', compact('langs'));
+        $this->layout->title = trans('Portoflios');
+        $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.portfolios');
 	}
 
 	/**

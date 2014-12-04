@@ -6,31 +6,51 @@
     <div class="col-lg-6">
         <section class="box box-primary">
             <div class="box-header">
-                <h3 class="box-title">{{ trans("admin/navigation.categories") }}</h3>
+                <h3 class="box-title">{{ trans("blogfolio::navigation.categories") }}</h3>
             </div>
             <form class="form" id="edit-category-form" method="POST" onsubmit="return false;">
             	<div class="box-body clearfix">
-					@foreach ($langs as $lang)
-                    	<div class="form-group">
-                			@foreach ($cat->catData as $key => $data)
-								@if ($data->lang_id == $lang->id)
-	                        		<label for="lang_id-{{$data->lang_id}}">{{ trans('Name') }}
-										{{ $lang->name }}
-	                        		:</label>
-	                        		<input type="text" class="form-control" id="lang_id-{{$data->lang_id}}" name="lang_id-{{$data->lang_id}}" value='{{$data->name}}'>
+
+
+					<div class="nav-tabs-custom">
+						<ul class="nav nav-tabs pull-right">
+							<?php $i = 0?>
+							@foreach ($langs as $lang)
+								@if ($i == 0)
+									<?php $active = 'active'?>
+								@else
+									<?php $active = '' ?>
 								@endif
-								<?php $catLang[] = $data->lang_id ?>
-							@endforeach
-	                    </div>
-                    @endforeach
-                     @foreach ($langs as $lang)
-						@if (!in_array($lang->id, $catLang))
-							<label for="lang_id-{{$lang->id}}">{{ trans('Name') }}
-								{{ $lang->name }}
-                    		:</label>
-                    		<input type="text" class="form-control" id="lang_id-{{$lang->id}}" name="lang_id-{{$lang->id}}" value=''>
-						@endif
-					@endforeach
+						        <li class="{{$active}}"><a data-toggle="tab" href="#{{ $lang->name }}">{{ $lang->name }}</a></li>
+						        <?php $i++ ?>
+								@endforeach
+							<li class="pull-left header"><i class="fa fa-th"></i>{{ trans('Name') }}</li>
+						</ul>
+                        <div class="tab-content">
+                        	@foreach ($cat->catData as $key => $data)
+		                    		<?php $i = 0?>
+										@foreach ($langs as $lang)
+											@if ($i == 0)
+												<?php $active = 'active'?>
+											@else
+												<?php $active = '' ?>
+											@endif
+											@if (in_array($lang->id, $allLangs))
+												@if ($data->lang_id == $lang->id)
+													<div id="{{ $lang->name }}" class="tab-pane {{$active}}">
+							                        	<input type="text" class="form-control" id="{{$lang->locale}}" name="lang_id-{{$lang->locale}}" value='{{$data->name}}'>
+							                        </div>
+												@endif
+											@else
+											<div id="{{ $lang->name }}" class="tab-pane">
+					                        	<input type="text" class="form-control" id="{{$lang->locale}}" name="lang_id-{{$lang->locale}}" value=''>
+					                        </div>
+											@endif
+											<?php $i++ ?>
+										@endforeach
+		                    @endforeach
+                        </div>
+            		</div>
                     <div class="box-footer">
                    		<button id="update-settings" class="btn btn-primary">{{ trans('syntara::all.update') }}</button>
                    	</div>

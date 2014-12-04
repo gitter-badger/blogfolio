@@ -10,12 +10,34 @@
             </div>
             <form class="form" id="create-category-form" method="PUT" onsubmit="return false;">
             	<div class="box-body clearfix">
-                    @foreach ($langs as $lang)
-                    	<div class="form-group">
-	                        <label for="{{$lang->id}}_name">{{ trans('Category Name') }} {{ $lang->name }}:</label>
-	                        <input type="text" class="form-control" id="lang_id-{{$lang->id}}" name="lang_id-{{$lang->id}}" value=''>
-	                    </div>
-                    @endforeach
+            		<div class="nav-tabs-custom">
+	                    <ul class="nav nav-tabs pull-right">
+	                    	 <?php $i = 0?>
+							@foreach ($langs as $lang)
+								@if ($i == 0)
+									<?php $active = 'active'?>
+								@else
+									<?php $active = '' ?>
+								@endif
+					        <li class="{{$active}}"><a data-toggle="tab" href="#{{ $lang->name }}">{{ $lang->name }}</a></li>
+					        <?php $i++ ?>
+							@endforeach
+	                        <li class="pull-left header"><i class="fa fa-th"></i>{{ trans('catName') }}</li>
+	                    </ul>
+	                    <div class="tab-content">
+						<?php $i = 0?>
+                        @foreach ($langs as $lang)
+						    	@if ($i == 0)
+										<?php $active = 'active'?>
+								@else
+									<?php $active = '' ?>
+								@endif
+						    	<div id="{{ $lang->name }}" class="tab-pane {{$active}}">
+		                        	<input type="text" class="form-control" id="lang_id-{{$lang->id}}" name="lang_id-{{$lang->id}}" value=''>
+		                        </div>
+		                        	<?php $i++ ?>
+							@endforeach
+                        </div><!-- /.tab-content -->
                     <div class="box-footer">
                    		<button id="update-settings" class="btn btn-primary">{{ trans('syntara::all.create') }}</button>
                    	</div>

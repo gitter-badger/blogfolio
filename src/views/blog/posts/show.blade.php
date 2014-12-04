@@ -10,48 +10,84 @@
             </div>
             <form class="form" id="edit-post-form" method="PUT" onsubmit="return false;">
             	<div class="box-body clearfix">
-            		@foreach ($post->postData as $key => $data)
-                    	<div class="form-group">
-								@foreach ($langs as $lang)
-									@if ($data->lang_id == $lang->id)
-	                        			<label for="{{$lang->locale}}-title">{{ trans('Title') }}
-											{{ $lang->name }}
-		                        		:</label>
-		                        		<input type="text" class="form-control" id="{{$lang->locale}}-title" name="{{$lang->locale}}-title" value='{{$data->title}}'>
-									@endif
-									<?php $titleLang[] = $data->lang_id ?>
-								@endforeach
-	                    </div>
-                    @endforeach
-                    @foreach ($langs as $lang)
-						@if (!in_array($lang->id, $titleLang))
-							<label for="{{$lang->locale}}-title">{{ trans('Title') }}
-								{{ $lang->name }}
-                    		:</label>
-                    		<input type="text" class="form-control" id="{{$lang->locale}}-title" name="{{$lang->locale}}-title" value=''>
-						@endif
-					@endforeach
-					@foreach ($langs as $lang)
-	                    <div class="form-group">
-    			            @foreach ($post->postData as $key => $data)
-								@if ($data->lang_id == $lang->id)
-                        			<label for="{{$lang->locale}}-content">{{ trans('Content') }}
-										{{ $lang->name }}
-			                        :</label>
-			                        <textarea class="form-control" id="{{$lang->locale}}-content" name="{{$lang->locale}}-content">{{$data->content}}</textarea>
+            		<div class="nav-tabs-custom">
+						<ul class="nav nav-tabs pull-right">
+							<?php $i = 0?>
+							@foreach ($langs as $lang)
+								@if ($i == 0)
+									<?php $active = 'active'?>
+								@else
+									<?php $active = '' ?>
 								@endif
-								<?php $contentLang[] = $data->lang_id ?>
-							@endforeach
-	                    </div>
-	                @endforeach
-					@foreach ($langs as $lang)
-						@if (!in_array($lang->id, $contentLang))
-							<label for="{{$lang->locale}}-content">{{ trans('Content') }}
-								{{ $lang->name }}
-	                        :</label>
-	                        <textarea class="form-control" id="{{$lang->locale}}-content" name="{{$lang->locale}}-content"></textarea>
-						@endif
-					@endforeach
+						        <li class="{{$active}}"><a data-toggle="tab" href="#{{ $lang->name }}-title">{{ $lang->name }}</a></li>
+						        <?php $i++ ?>
+								@endforeach
+							<li class="pull-left header"><i class="fa fa-th"></i>{{ trans('Title') }}</li>
+						</ul>
+                        <div class="tab-content">
+                        	@foreach ($post->postData as $key => $data)
+		                    		<?php $i = 0?>
+										@foreach ($langs as $lang)
+											@if ($i == 0)
+												<?php $active = 'active'?>
+											@else
+												<?php $active = '' ?>
+											@endif
+											@if (in_array($lang->id, $allLangs))
+												@if ($data->lang_id == $lang->id)
+													<div id="{{ $lang->name }}-title" class="tab-pane {{$active}}">
+							                        	<input type="text" class="form-control" id="{{$lang->locale}}-title" name="{{$lang->locale}}-title" value='{{$data->title}}'>
+							                        </div>
+												@endif
+											@else
+											<div id="{{ $lang->name }}-title" class="tab-pane">
+					                        	<input type="text" class="form-control" id="{{$lang->locale}}-title" name="{{$lang->locale}}-title" value=''>
+					                        </div>
+											@endif
+											<?php $i++ ?>
+										@endforeach
+		                    @endforeach
+                        </div>
+            		</div>
+            		<div class="nav-tabs-custom">
+						<ul class="nav nav-tabs pull-right">
+							<?php $i = 0?>
+							@foreach ($langs as $lang)
+								@if ($i == 0)
+									<?php $active = 'active'?>
+								@else
+									<?php $active = '' ?>
+								@endif
+						        <li class="{{$active}}"><a data-toggle="tab" href="#{{ $lang->name }}-content">{{ $lang->name }}</a></li>
+						        <?php $i++ ?>
+								@endforeach
+							<li class="pull-left header"><i class="fa fa-th"></i>{{ trans('Content') }}</li>
+						</ul>
+                        <div class="tab-content">
+                        	@foreach ($post->postData as $key => $data)
+		                    		<?php $i = 0?>
+										@foreach ($langs as $lang)
+											@if ($i == 0)
+												<?php $active = 'active'?>
+											@else
+												<?php $active = '' ?>
+											@endif
+											@if (in_array($lang->id, $allLangs))
+												@if ($data->lang_id == $lang->id)
+													<div id="{{ $lang->name }}-content" class="tab-pane {{$active}}">
+							                        	 <textarea class="form-control" id="{{$lang->locale}}-content" name="{{$lang->locale}}-content">{{$data->content}}</textarea>
+							                        </div>
+												@endif
+											@else
+											<div id="{{ $lang->name }}-content" class="tab-pane">
+					                        	 <textarea class="form-control" id="{{$lang->locale}}-content" name="{{$lang->locale}}-content"></textarea>
+					                        </div>
+											@endif
+											<?php $i++ ?>
+										@endforeach
+		                    @endforeach
+                        </div>
+            		</div>
 	                    <div class="form-group">
 	                        {{ Form::label('active', trans('Active ?')) }}
 	                       	{{ Form::checkbox('active', 1, true) }}

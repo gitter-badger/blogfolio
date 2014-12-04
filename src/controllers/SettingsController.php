@@ -22,7 +22,6 @@ class SettingsController extends \BaseController {
 	public function index()
 	{
 		$settings = Settings::all();
-		$templates = Template::get();
 		$langs = Language::get();
 		$this->layout = View::make('blogfolio::settings.index-settings', compact('settings', 'templates', 'langs'));
         $this->layout->title = trans('blogfolio::settings.settings');

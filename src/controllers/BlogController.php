@@ -185,8 +185,12 @@ class BlogController extends \BaseController {
 	{
 		$cat = $this->cat->find($id);
 		$lang = new Language();
+		$allLang = $lang->select('id')->where(array('active' => 1))->get();
+		foreach ($allLang as $lang) {
+			$allLangs[] = $lang->id;
+		}
 		$langs = $lang->where(array('active' => 1))->get();
-		$this->layout = View::make('blogfolio::blog.categories.show', compact('cat', 'langs'));
+		$this->layout = View::make('blogfolio::blog.categories.show', compact('cat', 'langs', 'allLangs'));
         $this->layout->title = trans('Categorias');
         $this->layout->breadcrumb = Config::get('blogfolio::breadcrumbs.categories');
 	}
@@ -204,11 +208,16 @@ class BlogController extends \BaseController {
 		$cats = CatData::where(array('lang_id' => Settings::get('site_admin_lang')))->get();
 		$lang = new Language();
 		$langs = $lang->where(array('active' => 1))->get();
+
+		$allLang = $lang->select('id')->where(array('active' => 1))->get();
+		foreach ($allLang as $lang) {
+			$allLangs[] = $lang->id;
+		}
 		$activeLangs = Language::select('id')->where(array('active' => 1))->get();
 		foreach ($activeLangs as $actual) {
 			$actualLangs[] = $actual->id;
 		}
-		$this->layout = View::make('blogfolio::blog.posts.show', compact('post', 'langs', 'cats', 'actualLangs'));
+		$this->layout = View::make('blogfolio::blog.posts.show', compact('post', 'langs', 'cats', 'actualLangs', 'allLangs'));
         $this->layout->title = trans('Posts');
         $this->layout->breadcrumb = Config::get('blogfolio::breadcrumbs.posts');
 	}

@@ -279,13 +279,13 @@ Route::group(array('before' => 'basicAuth|hasPermissions', 'prefix' => Config::g
         'as' => 'indexPortfolios',
         'uses' => 'PortfolioController@indexPortfolios')
     );
-    Route::get('portfolio/{id}', array(
-        'as' => 'showPortfolio',
-        'uses' => 'PortfolioController@showPortfolio')
-    );
     Route::get('portfolio/new', array(
         'as' => 'newPortfolio',
         'uses' => 'PortfolioController@newPortfolio')
+    );
+    Route::get('portfolio/{id}', array(
+        'as' => 'showPortfolio',
+        'uses' => 'PortfolioController@showPortfolio')
     );
     Route::put('portfolio/{id}', array(
         'as' => 'updatePortfolio',

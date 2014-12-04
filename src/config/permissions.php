@@ -46,6 +46,7 @@ return array(
         'postComment'	=> 'blogComments-management',
         'deleteComment'	=> 'blogComments-management',
         'indexPortfolios'	=> 'portfolios-management',
+        'newPortfolio'	=> 'portfolios-management',
         'showPortfolio'	=> 'portfolios-management',
         'updatePortfolio'	=> 'portfolios-management',
         'postPortfolio'	=> 'portfolios-management',
