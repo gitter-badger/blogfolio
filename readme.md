@@ -9,6 +9,7 @@ Tasks:
 - Blog Posts system - 100%
 - Blog Comments System - 100%
 - Blog Categories System - 100%
-- Portfolio System - 30%
+- Portfolio System - 90%
+- Gallery system - 5%
 - Theme system - 0%
 - Front-end System - 0%
