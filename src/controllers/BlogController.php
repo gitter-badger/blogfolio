@@ -30,10 +30,22 @@ class BlogController extends \BaseController {
     protected $category;
 
     /**
+     * CategoryData Model
+     * @var CatData
+     */
+    protected $catData;
+
+    /**
      * Comment Model
      * @var comment
      */
     protected $comment;
+
+    /**
+     * Language Model
+     * @var lang
+     */
+    protected $lang;
 
 
     /**
@@ -41,13 +53,18 @@ class BlogController extends \BaseController {
      * @param Post $post
      * @param User $user
      * @param Cat $category
+     * @param Comment $comment
+     * @param CatData $catData
+     * @param Language $lang
      */
-    public function __construct(Post $post, User $user, Cat $category, Comment $comment)
+    public function __construct(Post $post, User $user, Cat $category, Comment $comment, CatData $catData, Language $lang)
     {
         $this->post = $post;
         $this->cat = $category;
+        $this->catData = $catData;
         $this->user = $user;
         $this->comment = $comment;
+        $this->lang = $lang;
     }
 
 	/**
@@ -59,9 +76,8 @@ class BlogController extends \BaseController {
 	public function indexCategories()
 	{
 
-		$cats = Cat::get();
-		$lang = new Language();
-		$langs = $lang->where(array('active' => 1))->take(3)->get();
+		$cats = $this->cat->get();
+		$langs = $this->lang->where(array('active' => 1))->take(3)->get();
         $this->layout = View::make('blogfolio::blog.categories.index', compact('cats', 'langs'));
         $this->layout->title = trans('Categorias');
         $this->layout->breadcrumb = Config::get('blogfolio::breadcrumbs.categories');
@@ -76,10 +92,9 @@ class BlogController extends \BaseController {
 	public function indexPosts()
 	{
 
-		$posts = Post::get();
+		$posts = $this->post->get();
 
-		$lang = new Language();
-		$langs = Language::where(array('active' => 1))->get();
+		$langs = $this->lang->where(array('active' => 1))->get();
 
 		// Ajax search
         $postId = Input::get('postIdSearch');
@@ -117,7 +132,7 @@ class BlogController extends \BaseController {
 	public function indexComments()
 	{
 
-		$comments = Comment::get();
+		$comments = $this->comment->get();
 
 
 		// Ajax search
@@ -150,8 +165,7 @@ class BlogController extends \BaseController {
 	 */
 	public function newCategory()
 	{
-		$lang = new Language();
-		$langs = $lang->where(array('active' => 1))->get();
+		$langs = $this->lang->where(array('active' => 1))->get();
         $this->layout = View::make('blogfolio::blog.categories.new', compact('langs'));
         $this->layout->title = trans('Categorias');
         $this->layout->breadcrumb = Config::get('blogfolio::breadcrumbs.categories');
@@ -165,10 +179,9 @@ class BlogController extends \BaseController {
 	 */
 	public function newPost()
 	{
-		$lang = new Language();
-		$langs = Language::where(array('active' => 1))->get();
+		$langs = $this->lang->where(array('active' => 1))->get();
 
-		$cats = CatData::where(array('lang_id' => Settings::get('site_admin_lang')))->get();
+		$cats = $this->catData->where(array('lang_id' => Settings::get('site_admin_lang')))->get();
         $this->layout = View::make('blogfolio::blog.posts.new', compact('langs', 'cats'));
         $this->layout->title = trans('Posts');
         $this->layout->breadcrumb = Config::get('blogfolio::breadcrumbs.posts');
@@ -184,12 +197,11 @@ class BlogController extends \BaseController {
 	public function showCategory($id)
 	{
 		$cat = $this->cat->find($id);
-		$lang = new Language();
-		$allLang = $lang->select('id')->where(array('active' => 1))->get();
+		$allLang = $this->lang->select('id')->where(array('active' => 1))->get();
 		foreach ($allLang as $lang) {
 			$allLangs[] = $lang->id;
 		}
-		$langs = $lang->where(array('active' => 1))->get();
+		$langs = $this->lang->where(array('active' => 1))->get();
 		$this->layout = View::make('blogfolio::blog.categories.show', compact('cat', 'langs', 'allLangs'));
         $this->layout->title = trans('Categorias');
         $this->layout->breadcrumb = Config::get('blogfolio::breadcrumbs.categories');
@@ -205,15 +217,14 @@ class BlogController extends \BaseController {
 	public function showPost($id)
 	{
 		$post = $this->post->find($id);
-		$cats = CatData::where(array('lang_id' => Settings::get('site_admin_lang')))->get();
-		$lang = new Language();
-		$langs = $lang->where(array('active' => 1))->get();
+		$cats = $this->catData->where(array('lang_id' => Settings::get('site_admin_lang')))->get();
+		$langs = $this->lang->where(array('active' => 1))->get();
 
-		$allLang = $lang->select('id')->where(array('active' => 1))->get();
+		$allLang = $this->lang->select('id')->where(array('active' => 1))->get();
 		foreach ($allLang as $lang) {
 			$allLangs[] = $lang->id;
 		}
-		$activeLangs = Language::select('id')->where(array('active' => 1))->get();
+		$activeLangs = $this->lang->select('id')->where(array('active' => 1))->get();
 		foreach ($activeLangs as $actual) {
 			$actualLangs[] = $actual->id;
 		}
@@ -271,14 +282,13 @@ class BlogController extends \BaseController {
 	 */
 	public function storePost()
 	{
-        $post = new Post();
+        $post = $this->post;
         $post->user_id = Sentry::getUser()->id;
         $post->active = (bool)Input::get('active');
         $post->tags = Input::get('tags');
         $post->category_id = Input::get('category');
 
-        $lang = new Language();
-		$langs = $lang->where(array('active' => 1))->get();
+		$langs = $this->lang->where(array('active' => 1))->get();
 
         $all = Input::all();
 
@@ -321,10 +331,9 @@ class BlogController extends \BaseController {
 	{
 		$all = Input::all();
         foreach ($all as $key => $value) {
-        	$catData = new CatData();
         	$lang_id = explode('-', $key)[1];
         	$name = $value;
-        	$catData->where(array('cat_id' => $id))->where(array('lang_id' => $lang_id))->update(array('name' => $name));
+        	$this->catData->where(array('cat_id' => $id))->where(array('lang_id' => $lang_id))->update(array('name' => $name));
         }
 
         return Response::json(array('categoryUpdated' => true, 'message' => trans('La categoria se ha actualizado correctamente'), 'messageType' => 'success'));

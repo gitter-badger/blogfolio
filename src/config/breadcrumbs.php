@@ -76,7 +76,7 @@ return array(
         array(
             'title' => trans('blogfolio::breadcrumbs.Globalsettings'),
             'link' => URL::route('indexSettings'),
-            'icon' => 'fa fa-cogs'
+            'icon' => 'fa fa-cog fa-spin'
         )
     ),
     'categories' => array(

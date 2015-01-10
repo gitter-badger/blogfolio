@@ -3,10 +3,10 @@
         <meta charset="UTF-8">
         <title>{{ (!empty($siteName)) ? $siteName : "Blogfolio"}} - {{isset($title) ? $title : '' }}</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-        <!-- bootstrap 3.0.2 -->
-        <link href="{{ asset("packages/ukadev/blogfolio/Blogfolio/css/bootstrap.min.css") }}" rel="stylesheet" type="text/css" />
+        <!-- bootstrap 3.3.1 -->
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <!-- font Awesome -->
-        <link href="{{ asset("packages/ukadev/blogfolio/Blogfolio/css/font-awesome.min.css") }}" rel="stylesheet" type="text/css" />
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
         <!-- Ionicons -->
         <link href="{{ asset("packages/ukadev/blogfolio/Blogfolio/css/ionicons.min.css") }}" rel="stylesheet" type="text/css" />
         <!-- Morris chart -->
@@ -17,8 +17,6 @@
         <link href="{{ asset("packages/ukadev/blogfolio/Blogfolio/css/fullcalendar/fullcalendar.css") }}" rel="stylesheet" type="text/css" />
         <!-- Daterange picker -->
         <link href="{{ asset("packages/ukadev/blogfolio/Blogfolio/css/daterangepicker/daterangepicker-bs3.css") }}" rel="stylesheet" type="text/css" />
-        <!-- bootstrap wysihtml5 - text editor -->
-        <link href="{{ asset("packages/ukadev/blogfolio/Blogfolio/css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css") }}" rel="stylesheet" type="text/css" />
         <!-- Theme style -->
         <link href="{{ asset("packages/ukadev/blogfolio/Blogfolio/css/Blogfolio.css") }}" rel="stylesheet" type="text/css" />
 		<!--  text editor -->
@@ -27,6 +25,8 @@
         <link href="{{ asset("packages/ukadev/blogfolio/css/Blogfolio.css") }}" rel="stylesheet" type="text/css" />
         <!-- bootstrap css tags -->
         <link href="{{ asset("packages/ukadev/blogfolio/css/tags.css") }}" rel="stylesheet" type="text/css" />
+        <!-- Multi Select -->
+        <link href="{{ asset("packages/ukadev/blogfolio/css/multi-select.css") }}" rel="stylesheet" type="text/css" />
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -58,7 +58,7 @@
         <!-- jQuery UI 1.10.3 -->
         <script src="{{ asset("packages/ukadev/blogfolio/Blogfolio/js/jquery-ui-1.10.3.min.js") }}" type="text/javascript"></script>
         <!-- Bootstrap -->
-        <script src="{{ asset("packages/ukadev/blogfolio/Blogfolio/js/bootstrap.min.js") }}" type="text/javascript"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js" type="text/javascript"></script>
         <!-- Morris.js charts -->
         <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
         <script src="{{ asset("packages/ukadev/blogfolio/Blogfolio/js/plugins/morris/morris.min.js") }}" type="text/javascript"></script>
@@ -73,8 +73,6 @@
         <script src="{{ asset("packages/ukadev/blogfolio/Blogfolio/js/plugins/jqueryKnob/jquery.knob.js") }}" type="text/javascript"></script>
         <!-- daterangepicker -->
         <script src="{{ asset("packages/ukadev/blogfolio/Blogfolio/js/plugins/daterangepicker/daterangepicker.js") }}" type="text/javascript"></script>
-        <!-- Bootstrap WYSIHTML5 -->
-        <script src="{{ asset("packages/ukadev/blogfolio/Blogfolio/js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js") }}" type="text/javascript"></script>
         <!-- iCheck -->
         <script src="{{ asset("packages/ukadev/blogfolio/Blogfolio/js/plugins/iCheck/icheck.min.js") }}" type="text/javascript"></script>
 		<!-- Bootstrap WYSIHTML5 -->
@@ -86,6 +84,8 @@
         <script src="{{ asset("packages/ukadev/blogfolio/js/tags.js") }}" type="text/javascript"></script>
         <!-- Extra functions for the Admin Panel -->
         <script src="{{ asset("packages/ukadev/blogfolio/js/extra.js") }}" type="text/javascript"></script>
+        <!-- Multi Select -->
+        <script src="{{ asset("packages/ukadev/blogfolio/js/jquery.multi-select.js") }}" type="text/javascript"></script>
 
     </body>
 </html>

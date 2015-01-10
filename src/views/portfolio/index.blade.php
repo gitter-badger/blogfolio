@@ -3,7 +3,7 @@
 @section('content')
 <script src="{{ asset('packages/ukadev/blogfolio/js/dashboard/portfolios.js') }}"></script>
 
-@include('syntara::layouts.dashboard.confirmation-modal',  array('title' => trans('syntara::all.confirm-delete-title'), 'content' => trans('syntara::all.confirm-delete-message'), 'type' => 'delete-post'))
+@include('syntara::layouts.dashboard.confirmation-modal',  array('title' => trans('syntara::all.confirm-delete-title'), 'content' => trans('syntara::all.confirm-delete-message'), 'type' => 'delete-portfolio'))
 
 <div class="row">
     <div class="col-lg-9">

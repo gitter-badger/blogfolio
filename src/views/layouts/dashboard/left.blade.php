@@ -46,7 +46,7 @@
                 @if($currentUser->hasAccess('view-users-list') || $currentUser->hasAccess('groups-management'))
                 <li class="{{Active::route(array('indexSettings')); }}" >
                     <a href="{{ URL::route('indexSettings') }}">
-	                    <i class="fa fa-cogs"></i> <span>{{trans("blogfolio::breadcrumbs.Globalsettings")}}</span>
+	                    <i class="fa fa-cog"></i> <span>{{trans("blogfolio::breadcrumbs.Globalsettings")}}</span>
 	                </a>
                 </li>
                 @endif
@@ -70,7 +70,7 @@
                 </li>
                 @endif
                 @if($currentUser->hasAccess('indexPorfolios'))
-                <li class="treeview {{Active::route(array('indexPortfolios', 'newPortfolio', 'editPortfolio')) }}" >
+                <li class="treeview {{Active::route(array('indexPortfolios', 'newPortfolio', 'editPortfolio', 'indexGalleries', 'showGallery')) }}" >
                     <a href="#" class="active"><i class="fa fa-book"></i>
                         <span>{{ trans('blogfolio::navigation.portfolio') }}</span>
                         <i class="fa fa-angle-left pull-right"></i>
@@ -79,11 +79,11 @@
                         @if($currentUser->hasAccess('view-portfolios-list'))
                         <li class='{{Active::route(array('indexPortfolios', 'newPortfolio', 'editPortfolio'))}}'><a href="{{ URL::route('indexPortfolios') }}"><i class="fa fa-book"></i> {{ trans('blogfolio::navigation.portfolios') }}</a></li>
                         @endif
-                        @if($currentUser->hasAccess('comments-management'))
-                        <li class='{{Active::route(array('indexComments', 'showComment'))}}'><a href="{{ URL::route('indexComments') }}"><i class="fa fa-comments-o"></i> {{ trans('blogfolio::navigation.comments') }}</a></li>
-                        @endif
-                        @if($currentUser->hasAccess('blogCategories-management'))
-                        <li class='{{Active::route(array('indexCategories', 'newCategory', 'editCategory'))}}'><a href="{{ URL::route('indexCategories') }}"><i class="fa fa-th-list"></i> {{ trans('blogfolio::navigation.categories') }}</a></li>
+                        @if($currentUser->hasAccess('view-portfolios-galleries'))
+                        <li class='{{Active::route(array('indexGalleries', 'showGallery'))}}'><a href="{{ URL::route('indexGalleries') }}"><i class="fa fa-picture-o"></i> {{ trans('blogfolio::navigation.galleries') }}</a></li>
+                        @endif 
+                        @if($currentUser->hasAccess('view-portfolios-projects'))
+                        <li class='{{Active::route(array('indexProjects', 'showProject'))}}'><a href="{{ URL::route('indexProjects') }}"><i class="fa fa-file-code-o"></i> {{ trans('blogfolio::navigation.projects') }}</a></li>
                         @endif
                     </ul>
                 </li>

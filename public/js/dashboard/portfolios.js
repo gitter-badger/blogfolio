@@ -1,7 +1,7 @@
 $(function()
 {
 
-    $(document).on('submit', '#create-post-form', function()
+    $(document).on('submit', '#create-portfolio-form', function()
     {
         var sArray = $(this).serializeArray();
         $.ajax({
@@ -11,7 +11,7 @@ $(function()
             "dataType": "json"
         }).done(function(result)
         {
-            if(result.postCreated === false)
+            if(result.portfolioCreated === false)
             {
                 if(typeof result.message !== 'undefined')
                 {
@@ -30,7 +30,7 @@ $(function()
         });
 
         return false;
-    }).on('submit', '#edit-post-form', function()
+    }).on('submit', '#edit-portfolio-form', function()
     {
         var sArray = $(this).serializeArray();
         $.ajax({
@@ -40,7 +40,7 @@ $(function()
             "dataType": "json"
         }).done(function(result)
         {
-            if(result.postUpdated === false)
+            if(result.portfolioUpdated === false)
             {
                 if(typeof result.message !== 'undefined')
                 {
@@ -61,7 +61,7 @@ $(function()
     }).on('click', '#delete-item', function()
     {
         $('#confirm-modal').modal();
-    }).on('click', '.delete-post .confirm-action', function()
+    }).on('click', '.delete-portfolio .confirm-action', function()
     {
 
          $.each($('.table tbody tr td input:checkbox:checked'), function()
@@ -69,7 +69,7 @@ $(function()
          	var este = $(this);
             $.ajax(
             {
-                "url": window.location.href.toString()+"/"+$(this).data('post-id'),
+                "url": window.location.href.toString()+"/"+$(this).data('portfolio-id'),
                 "type": "DELETE"
             }).done(function(result)
             {

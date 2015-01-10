@@ -5,10 +5,57 @@
     color: #ffffff;
 }
 
-#delete-item{
+#delete-item {
     display: none;
 }
 
 table.table-hover tbody tr{
     cursor: pointer;
+}
+
+.full-width {
+	width:100%!important;
+}
+.right-no-radius {
+	border-top-right-radius:0!important;
+	border-bottom-right-radius:0!important;
+}
+.left-no-radius {
+	border-top-left-radius:0!important;
+	border-bottom-left-radius:0!important;
+}
+
+.float-left {
+	float:left!important;
+}
+
+.hiden {
+	display: none;
+}
+.left-18{
+	left: -28px;
+}
+.width100 {
+	width: 100px!important;
+}
+.width120 {
+	width: 120px!important;
+}
+.width200 {
+	width: 200px!important;
+}
+.width250 {
+	width: 250px!important;
+}
+.width260 {
+	width: 260px!important;
+}
+.width280 {
+	width: 280px!important;
+}
+.width300 {
+	width: 300px!important;
+}
+.width420 {
+	width: 420px!important;
 }

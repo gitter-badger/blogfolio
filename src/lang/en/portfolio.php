@@ -13,15 +13,6 @@ return array(
 	|
 	*/
 
-	'blog' => 'Blog',
-	'posts' => 'Posts',
-	'comments' => 'Comments',
-	'categories' => 'Categories',
-	'posts' => 'Posts',
-	'portfolio' => 'Portfolio',
-	'portfolios' => 'Portfolios',
-	'galleries' =>	'Galleries',
-	'gallery' => 'Gallery',
-	'projects' => 'Projects',
-	'project' => 'Project',
+	'new' => 'New Portfolio',
+
 );

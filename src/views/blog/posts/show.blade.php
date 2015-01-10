@@ -65,38 +65,38 @@
 						</ul>
                         <div class="tab-content">
                         	@foreach ($post->postData as $key => $data)
-		                    		<?php $i = 0?>
-										@foreach ($langs as $lang)
-											@if ($i == 0)
-												<?php $active = 'active'?>
-											@else
-												<?php $active = '' ?>
+	                    		<?php $i = 0?>
+									@foreach ($langs as $lang)
+										@if ($i == 0)
+											<?php $active = 'active'?>
+										@else
+											<?php $active = '' ?>
+										@endif
+										@if (in_array($lang->id, $allLangs))
+											@if ($data->lang_id == $lang->id)
+												<div id="{{ $lang->name }}-content" class="tab-pane {{$active}}">
+						                        	 <textarea class="form-control" id="{{$lang->locale}}-content" name="{{$lang->locale}}-content">{{$data->content}}</textarea>
+						                        </div>
 											@endif
-											@if (in_array($lang->id, $allLangs))
-												@if ($data->lang_id == $lang->id)
-													<div id="{{ $lang->name }}-content" class="tab-pane {{$active}}">
-							                        	 <textarea class="form-control" id="{{$lang->locale}}-content" name="{{$lang->locale}}-content">{{$data->content}}</textarea>
-							                        </div>
-												@endif
-											@else
-											<div id="{{ $lang->name }}-content" class="tab-pane">
-					                        	 <textarea class="form-control" id="{{$lang->locale}}-content" name="{{$lang->locale}}-content"></textarea>
-					                        </div>
-											@endif
-											<?php $i++ ?>
-										@endforeach
+										@else
+										<div id="{{ $lang->name }}-content" class="tab-pane">
+				                        	 <textarea class="form-control" id="{{$lang->locale}}-content" name="{{$lang->locale}}-content"></textarea>
+				                        </div>
+										@endif
+										<?php $i++ ?>
+									@endforeach
 		                    @endforeach
                         </div>
             		</div>
 	                    <div class="form-group">
 	                        {{ Form::label('active', trans('Active ?')) }}
-	                       	{{ Form::checkbox('active', 1, true) }}
+	                       	{{ Form::checkbox('active', 1, $post->active) }}
 	                    </div>
 	                    <div class="form-group">
 	                        {{ Form::label('category', trans('Category')) }}
 	                        <select class="form-control" name="category" id="category">
 		                       	@foreach ($cats as $cat)
-		                       		<option value='{{$cat->id}}'{{($cat->cat_id == $post->category_id) ? ' selected' : ''}}>{{$cat->name}}</option>
+		                       		<option value='{{$cat->cat_id}}'{{($cat->cat_id == $post->category_id) ? ' selected' : ''}}>{{$cat->name}}</option>
 		                       	@endforeach
 	                       	</select>
 	                    </div>

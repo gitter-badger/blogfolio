@@ -11,7 +11,7 @@
     @foreach ($portfolios as $portfolio)
     <tr onclick="document.location='{{ URL::route('showPortfolio', $portfolio->id)}}'">
         <td style="text-align: center;" class="row1">
-            <input type="checkbox" data-post-id="{{ $portfolio->id }}">
+            <input type="checkbox" data-portfolio-id="{{ $portfolio->id }}">
         </td>
         <td style="text-align: center;">{{ $portfolio->id }}</td>
 	    <td>{{ str_limit($portfolio->name, 100, '...') }}</td>

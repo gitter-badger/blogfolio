@@ -78,15 +78,15 @@
                        	{{ Form::checkbox('active', 1, true) }}
                     </div>
                     <div class="form-group">
-	                        {{ Form::label('category', trans('Category')) }}
-	                        <select class="form-control" name="category" id="category">
-		                       	@foreach ($cats as $cat)
-		                       		<option value='{{$cat->id}}'>{{$cat->name}}</option>
-		                       	@endforeach
-	                       	</select>
-	                    </div>
+                        {{ Form::label('category', trans('Category')) }}
+                        <select class="form-control" name="category" id="category">
+	                       	@foreach ($cats as $cat)
+	                       		<option value='{{$cat->cat_id}}'>{{$cat->name}}</option>
+	                       	@endforeach
+                       	</select>
+                    </div>
                     <div class="form-group">
-	                        <label for="tags">{{ trans('Tags') }}: <br>
+	                        <label for="tags" class="full-width">{{ trans('Tags') }}: <br>
 	                    	<input type="text" data-role="tagsinput" class="form-control" id="tags" name="tags" />
 	                    </div>
                     <div class="box-footer">
