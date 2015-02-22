@@ -15,7 +15,7 @@
         "mrjuliuss/syntara": "1.2.*",
         "thomaswelton/laravel-gravatar": "0.1.x",
         "hieu-le/active": "~1.0",
-        "anlutro/l4-settings": "dev-master"
+        "anlutro/l4-settings": "0.2.8"
     },
     "autoload": {
         "classmap": [
