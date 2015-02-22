@@ -64,7 +64,7 @@
                         {{ Form::label('user_skills', trans('Show skills?')) }}
                        	{{ Form::checkbox('user_skills', 1, $portfolio->use_skills) }}
                     </div>
-                    <div class="form-group{{($portfolio->use_skills == 0) ? ' hiden' : ''}}" id="showSkills">
+                    <div class="form-group{{($portfolio->use_skills == 0) ? ' hidden' : ''}}" id="showSkills">
                     @if($portfolio->use_skills)
                         @foreach ($skills as $key => $value)
                         	@if ($key == 0)
@@ -164,14 +164,6 @@
                                 @endforeach
                             @endif
                         </div>
-                    </div>
-                    <div class="form-group">
-                        {{ Form::label('gallery', trans('Gallery')) }}:
-                        <select class="form-control" name="gallery" id="gallery">
-                            @foreach ($galleries as $gallery)
-                                <option value='{{$gallery->id}}'{{($gallery->id == $portfolio->gallery_id)? ' selected' : ''}}>{{$gallery->name}}</option>
-                            @endforeach
-                        </select>
                     </div>
                     <div class="form-group">
                         {{ Form::label('projects', trans('Projects')) }}: <br>

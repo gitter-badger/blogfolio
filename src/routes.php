@@ -286,7 +286,7 @@ Route::group(array('before' => 'basicAuth|hasPermissions', 'prefix' => Config::g
         'uses' => 'PortfolioController@newPortfolio')
     );
     Route::post('portfolio/new', array(
-        'as' => 'newPortfolio',
+        'as' => 'storePortfolio',
         'uses' => 'PortfolioController@storePortfolio')
     );
     Route::get('portfolio/{id}', array(
@@ -303,32 +303,16 @@ Route::group(array('before' => 'basicAuth|hasPermissions', 'prefix' => Config::g
     );
 
     /**
-     * Portfolios galleries routes
-     */
-    Route::get('portfolio/galleries', array(
-        'as' => 'indexGalleries',
-        'uses' => 'PortfolioController@indexGalleries')
-    );
-    Route::get('portfolio/galleries/new', array(
-        'as' => 'newGallery',
-        'uses' => 'PortfolioController@newGallery')
-    );
-    Route::get('portfolio/galleries/{id}', array(
-        'as' => 'showGallery',
-        'uses' => 'PortfolioController@showGallery')
-    );
-    Route::put('portfolio/galleries/{id}', array(
-        'as' => 'updateGallery',
-        'uses' => 'PortfolioController@updateGallery')
-    );
-    Route::delete('portfolio/galleries/{id}', array(
-        'as' => 'deleteGallery',
-        'uses' => 'PortfolioController@deleteGallery')
-    );
-
-    /**
      * Portfolios projects routes
      */
+    Route::post('portfolio/projects/uploadFile', array(
+        'as' => 'uploadFile',
+        'uses' => 'PortfolioController@uploadFile')
+    );
+    Route::delete('portfolio/projects/{id}', array(
+        'as' => 'deleteProject',
+        'uses' => 'PortfolioController@deleteProject')
+    ); 
     Route::get('portfolio/projects', array(
         'as' => 'indexProjects',
         'uses' => 'PortfolioController@indexProjects')
@@ -337,6 +321,10 @@ Route::group(array('before' => 'basicAuth|hasPermissions', 'prefix' => Config::g
         'as' => 'newProject',
         'uses' => 'PortfolioController@newProject')
     );
+    Route::post('portfolio/projects/new', array(
+        'as' => 'newProject',
+        'uses' => 'PortfolioController@storeProject')
+    );
     Route::get('portfolio/projects/{id}', array(
         'as' => 'showProject',
         'uses' => 'PortfolioController@showProject')
@@ -344,9 +332,5 @@ Route::group(array('before' => 'basicAuth|hasPermissions', 'prefix' => Config::g
     Route::put('portfolio/projects/{id}', array(
         'as' => 'updateProject',
         'uses' => 'PortfolioController@updateProject')
-    );
-    Route::delete('portfolio/projects/{id}', array(
-        'as' => 'deleteProject',
-        'uses' => 'PortfolioController@deleteProject')
     );
 });

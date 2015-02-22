@@ -142,11 +142,32 @@ return array(
             'icon' => 'fa fa-tags'
         )
     ),
-    'edit_post' => array(
+    'edit_potfolio' => array(
         array(
             'title' => trans('blogfolio::navigation.portfolios'),
             'link' => URL::route('indexPortfolios'),
             'icon' => 'fa fa-tags'
+        )
+    ),
+    'projects' => array(
+        array(
+            'title' => trans('blogfolio::navigation.projects'),
+            'link' => URL::route('indexProjects'),
+            'icon' => 'fa fa-file-code-o'
+        )
+    ),
+    'create_project' => array(
+        array(
+            'title' => trans('blogfolio::navigation.projects'),
+            'link' => URL::route('indexProjects'),
+            'icon' => 'fa fa-file-code-o'
+        )
+    ),
+    'edit_project' => array(
+        array(
+            'title' => trans('blogfolio::navigation.projectsprojects'),
+            'link' => URL::route('indexProjects'),
+            'icon' => 'fa fa-file-code-o'
         )
     ),
 );

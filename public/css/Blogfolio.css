@@ -29,7 +29,7 @@ table.table-hover tbody tr{
 	float:left!important;
 }
 
-.hiden {
+.hidden {
 	display: none;
 }
 .left-18{
@@ -58,4 +58,19 @@ table.table-hover tbody tr{
 }
 .width420 {
 	width: 420px!important;
+}
+.project_thumb100{
+	max-height: 100px;
+	max-width: 100px;
+	border-radius: 15px;
+	border: 1px solid #ccc;
+	margin-top: 5px;
+}
+#loaderSpin{
+	font-size: 56px;
+	position: absolute;
+	margin-left: -73px;
+	margin-top: 25px;
+	color: #ccc;
+	display: none;
 }

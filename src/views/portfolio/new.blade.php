@@ -51,7 +51,7 @@
                         {{ Form::label('user_skills', trans('Show skills?')) }}
                        	{{ Form::checkbox('user_skills', 1) }}
                     </div>
-                    <div class="form-group hiden" id="showSkills">
+                    <div class="form-group hidden" id="showSkills">
                         <div class="row" id='skillsDiv'>
                             <div class="col-xs-2">
                                 <input type="text" class="form-control" name="skills[name][]">
@@ -82,14 +82,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        {{ Form::label('gallery', trans('Gallery')) }}:
-                        <select class="form-control" name="gallery" id="gallery">
-                            @foreach ($galleries as $gallery)
-                                <option value='{{$gallery->id}}'>{{$gallery->name}}</option>
-                            @endforeach
-                        </select>
                     </div>
                     <div class="form-group">
                         {{ Form::label('projects', trans('Projects')) }}: <br>

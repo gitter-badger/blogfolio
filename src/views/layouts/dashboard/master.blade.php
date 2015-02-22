@@ -86,6 +86,5 @@
         <script src="{{ asset("packages/ukadev/blogfolio/js/extra.js") }}" type="text/javascript"></script>
         <!-- Multi Select -->
         <script src="{{ asset("packages/ukadev/blogfolio/js/jquery.multi-select.js") }}" type="text/javascript"></script>
-
     </body>
 </html>
