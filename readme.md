@@ -1,3 +1,8 @@
+[![Latest Stable Version](https://poser.pugx.org/ukadev/blogfolio/v/stable.svg)](https://packagist.org/packages/ukadev/blogfolio) 
+[![Total Downloads](https://poser.pugx.org/ukadev/blogfolio/downloads.svg)](https://packagist.org/packages/ukadev/blogfolio) 
+[![Latest Unstable Version](https://poser.pugx.org/ukadev/blogfolio/v/unstable.svg)](https://packagist.org/packages/ukadev/blogfolio) 
+[![License](https://poser.pugx.org/ukadev/blogfolio/license.svg)](https://packagist.org/packages/ukadev/blogfolio)
+
 #DO NOT DOWNLOAD. UNDER DEVELOPMENT
 
 Tasks:
