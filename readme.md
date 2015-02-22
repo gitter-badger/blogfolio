@@ -15,4 +15,5 @@ Tasks:
 - Blog Comments System - 100%
 - Blog Categories System - 100%
 - Portfolio System - 100%
+- Language System - 30%
 - Testing whole system - 10%
