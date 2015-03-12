@@ -4,9 +4,9 @@
         <th class="col-lg-1" style="text-align: center;"><input type="checkbox" class="check-all"></th>
         <th class="col-lg-1" style="text-align: center;">#</th>
         @foreach ($langs as $key => $lang)
-        	@if ($lang->id == Settings::get('site_default_lang'))
-        		<th class="col-lg-2 center">{{ trans('syntara::all.name') }}</th>
-        	@endif
+            @if ($lang->locale == Settings::get('site_admin_lang'))
+                <th class="col-lg-2 center">{{ trans('blogfolio::all.name') }}</th>
+            @endif
         @endforeach
     </tr>
 </thead>
@@ -18,7 +18,7 @@
         </td>
         <td style="text-align: center;">{{ $cat['id'] }}</td>
         @foreach ($cat->catData as $key =>$name)
-        	@if ($name->lang_id == Settings::get('site_default_lang'))
+        	@if ($name->lang == Settings::get('site_admin_lang'))
         		<td>{{ $name->name }}</td>
         	@endif
         @endforeach

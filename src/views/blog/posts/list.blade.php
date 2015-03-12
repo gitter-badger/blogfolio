@@ -4,8 +4,8 @@
         <th class="col-lg-1" style="text-align: center;"><input type="checkbox" class="check-all"></th>
         <th class="col-lg-1" style="text-align: center;">#</th>
         @foreach ($langs as $key => $lang)
-        	@if ($lang->id == Settings::get('site_default_lang'))
-        		<th class="col-lg-2 center">{{ trans('Title') }}</th>
+        	@if ($lang->locale == Settings::get('site_admin_lang'))
+        		<th class="col-lg-2 center">{{ trans('blogfolio::all.title') }}</th>
         	@endif
         @endforeach
     </tr>
@@ -18,7 +18,7 @@
         </td>
         <td style="text-align: center;">{{ $post['id'] }}</td>
 	       	@foreach($post->postData as $data)
-				@if ($data->lang_id == Settings::get('site_default_lang'))
+				@if ($data->lang == Settings::get('site_admin_lang'))
 	       			<td>{{ str_limit($data->title, 100, '...') }}</td>
 	       		@endif
 	       	@endforeach

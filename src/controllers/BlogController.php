@@ -1,71 +1,32 @@
 <?php
 
+namespace Ukadev\Blogfolio\Controllers;
 
-use MrJuliuss\Syntara\Controllers\BaseController;
+use Ukadev\Blogfolio\Controllers\BaseController;
 use Ukadev\Blogfolio\Helpers;
+use Post;
+use PostData;
+use User;
+use Cat;
+use CatData;
+use Comment;
+use View;
+use Response;
+use URL;
+use Language;
+use Input;
+use Config;
+use Request;
+use Settings;
+use Sentry;
+use Validator;
 
-class BlogController extends \BaseController {
+class BlogController extends BaseController {
 
 
 	var $commentRules =  array(
         'comment' => 'required|min:3'
     );
-
-	/**
-     * Post Model
-     * @var Post
-     */
-    protected $post;
-
-    /**
-     * User Model
-     * @var User
-     */
-    protected $user;
-
-    /**
-     * Category Model
-     * @var Cat
-     */
-    protected $category;
-
-    /**
-     * CategoryData Model
-     * @var CatData
-     */
-    protected $catData;
-
-    /**
-     * Comment Model
-     * @var comment
-     */
-    protected $comment;
-
-    /**
-     * Language Model
-     * @var lang
-     */
-    protected $lang;
-
-
-    /**
-     * Inject the models.
-     * @param Post $post
-     * @param User $user
-     * @param Cat $category
-     * @param Comment $comment
-     * @param CatData $catData
-     * @param Language $lang
-     */
-    public function __construct(Post $post, User $user, Cat $category, Comment $comment, CatData $catData, Language $lang)
-    {
-        $this->post = $post;
-        $this->cat = $category;
-        $this->catData = $catData;
-        $this->user = $user;
-        $this->comment = $comment;
-        $this->lang = $lang;
-    }
 
 	/**
 	 * Display a listing of the resource.
@@ -76,8 +37,8 @@ class BlogController extends \BaseController {
 	public function indexCategories()
 	{
 
-		$cats = $this->cat->get();
-		$langs = $this->lang->where(array('active' => 1))->take(3)->get();
+		$cats = Cat::get();
+		$langs = Language::where(array('status' => 1))->take(3)->get();
         $this->layout = View::make('blogfolio::blog.categories.index', compact('cats', 'langs'));
         $this->layout->title = trans('Categorias');
         $this->layout->breadcrumb = Config::get('blogfolio::breadcrumbs.categories');
@@ -92,20 +53,20 @@ class BlogController extends \BaseController {
 	public function indexPosts()
 	{
 
-		$posts = $this->post->get();
+		$posts = Post::get();
 
-		$langs = $this->lang->where(array('active' => 1))->get();
+		$langs = Language::where(array('status' => 1))->get();
 
 		// Ajax search
         $postId = Input::get('postIdSearch');
         if(!empty($postId))
         {
-            $posts = $posts->where('id', $catId);
+            $posts = Post::where('id', $catId);
         }
         $catname = Input::get('categoryNameSearch');
         if(!empty($catname))
         {
-            $posts = $posts->where('name', 'LIKE', '%'.$catname.'%');
+            $posts = Post::where('name', 'LIKE', '%'.$catname.'%');
         }
 
         $posts = Post::paginate(Config::get('syntara::config.item-perge-page'));
@@ -132,7 +93,7 @@ class BlogController extends \BaseController {
 	public function indexComments()
 	{
 
-		$comments = $this->comment->get();
+		$comments = Comment::get();
 
 
 		// Ajax search
@@ -165,7 +126,7 @@ class BlogController extends \BaseController {
 	 */
 	public function newCategory()
 	{
-		$langs = $this->lang->where(array('active' => 1))->get();
+		$langs = Language::where(array('status' => 1))->get();
         $this->layout = View::make('blogfolio::blog.categories.new', compact('langs'));
         $this->layout->title = trans('Categorias');
         $this->layout->breadcrumb = Config::get('blogfolio::breadcrumbs.categories');
@@ -179,9 +140,9 @@ class BlogController extends \BaseController {
 	 */
 	public function newPost()
 	{
-		$langs = $this->lang->where(array('active' => 1))->get();
+		$langs = Language::where(array('status' => 1))->get();
 
-		$cats = $this->catData->where(array('lang_id' => Settings::get('site_admin_lang')))->get();
+		$cats = CatData::where(array('lang' => Settings::get('site_admin_lang')))->get();
         $this->layout = View::make('blogfolio::blog.posts.new', compact('langs', 'cats'));
         $this->layout->title = trans('Posts');
         $this->layout->breadcrumb = Config::get('blogfolio::breadcrumbs.posts');
@@ -196,12 +157,12 @@ class BlogController extends \BaseController {
 	 */
 	public function showCategory($id)
 	{
-		$cat = $this->cat->find($id);
-		$allLang = $this->lang->select('id')->where(array('active' => 1))->get();
+		$cat = Cat::find($id);
+		$allLang = Language::select('id')->where(array('status' => 1))->get();
 		foreach ($allLang as $lang) {
 			$allLangs[] = $lang->id;
 		}
-		$langs = $this->lang->where(array('active' => 1))->get();
+		$langs = Language::where(array('status' => 1))->get();
 		$this->layout = View::make('blogfolio::blog.categories.show', compact('cat', 'langs', 'allLangs'));
         $this->layout->title = trans('Categorias');
         $this->layout->breadcrumb = Config::get('blogfolio::breadcrumbs.categories');
@@ -216,16 +177,16 @@ class BlogController extends \BaseController {
 	 */
 	public function showPost($id)
 	{
-		$post = $this->post->find($id);
-		$cats = $this->catData->where(array('lang_id' => Settings::get('site_admin_lang')))->get();
-		$langs = $this->lang->where(array('active' => 1))->get();
+		$post = Post::find($id);
+		$cats = CatData::where(array('lang' => Settings::get('site_admin_lang')))->get();
+		$langs = Language::where(array('status' => 1))->get();
 
-		$allLang = $this->lang->select('id')->where(array('active' => 1))->get();
+		$allLang = Language::select('id')->where(array('status' => 1))->get();
 		foreach ($allLang as $lang) {
 			$allLangs[] = $lang->id;
 		}
-		$activeLangs = $this->lang->select('id')->where(array('active' => 1))->get();
-		foreach ($activeLangs as $actual) {
+		$statusLangs = Language::select('id')->where(array('status' => 1))->get();
+		foreach ($statusLangs as $actual) {
 			$actualLangs[] = $actual->id;
 		}
 		$this->layout = View::make('blogfolio::blog.posts.show', compact('post', 'langs', 'cats', 'actualLangs', 'allLangs'));
@@ -242,7 +203,7 @@ class BlogController extends \BaseController {
 	 */
 	public function showComment($id)
 	{
-		$comment = $this->comment->find($id);
+		$comment = Comment::find($id);
 		$this->layout = View::make('blogfolio::blog.comments.show', compact('comment'));
         $this->layout->title = trans('Comments');
         $this->layout->breadcrumb = Config::get('blogfolio::breadcrumbs.comments');
@@ -266,7 +227,7 @@ class BlogController extends \BaseController {
     		}
         	$catData = new CatData();
         	$catData->cat_id = $cat->id;
-        	$catData->lang_id = explode('-', $key)[1];
+        	$catData->lang = explode('-', $key)[1];
         	$catData->name = $value;
         	$catData->save();
         }
@@ -282,13 +243,13 @@ class BlogController extends \BaseController {
 	 */
 	public function storePost()
 	{
-        $post = $this->post;
+        $post = new Post();
         $post->user_id = Sentry::getUser()->id;
-        $post->active = (bool)Input::get('active');
+        $post->status = (bool)Input::get('status');
         $post->tags = Input::get('tags');
         $post->category_id = Input::get('category');
 
-		$langs = $this->lang->where(array('active' => 1))->get();
+		$langs = Language::where(array('status' => 1))->get();
 
         $all = Input::all();
 
@@ -305,7 +266,7 @@ class BlogController extends \BaseController {
 		    foreach ($langs as $lang) {
 	        	$postData = new PostData();
 	        	$postData->post_id = $post->id;
-	        	$postData->lang_id = $lang->id;
+	        	$postData->lang = $lang->locale;
 	        	$postData->content = Input::get($lang->locale.'-content');
 	        	$postData->title = Input::get($lang->locale.'-title');
 	        	$postData->slug = $this->slug(Input::get($lang->locale.'-title'));
@@ -331,9 +292,9 @@ class BlogController extends \BaseController {
 	{
 		$all = Input::all();
         foreach ($all as $key => $value) {
-        	$lang_id = explode('-', $key)[1];
+        	$lang = explode('-', $key)[1];
         	$name = $value;
-        	$this->catData->where(array('cat_id' => $id))->where(array('lang_id' => $lang_id))->update(array('name' => $name));
+        	CatData::where(array('cat_id' => $id))->where(array('lang' => $lang))->update(array('name' => $name));
         }
 
         return Response::json(array('categoryUpdated' => true, 'message' => trans('La categoria se ha actualizado correctamente'), 'messageType' => 'success'));
@@ -353,7 +314,7 @@ class BlogController extends \BaseController {
 		}
 
         $post = Post::find($id);
-        $post->active = (bool)Input::get('active');
+        $post->status = (bool)Input::get('status');
         $post->tags = Input::get('tags');
         $post->category_id = Input::get('category');
 
@@ -368,12 +329,12 @@ class BlogController extends \BaseController {
 	    if($post->save()){
 
     		if(PostData::where(array('post_id' => $id))->delete()){
-				$langs = Language::where(array('active' => 1))->get();
+				$langs = Language::where(array('status' => 1))->get();
 			    foreach ($langs as $lang) {
 		        	$postData = new PostData();
 		        	$postData->post_id = $id;
-		        	$postData->lang_id = $lang->id;
-		        	$postData->content = Input::get($lang->locale.'-content');
+		        	$postData->lang = $lang->locale;
+		        	$postData->content = (Input::get($lang->locale.'-content')) ? Input::get($lang->locale.'-content') : '';
 		        	$postData->title = Input::get($lang->locale.'-title');
 		        	$postData->slug =$this->slug(Input::get($lang->locale.'-title'));
 
@@ -420,7 +381,7 @@ class BlogController extends \BaseController {
 		if(!$id){
 			return Response::json(array('categoryDeleted' => false, 'errorMessages' =>'Invalid category', 'messageType' => 'error'));
 		}
-        if(!$this->cat->find($id)->delete())
+        if(!Cat::find($id)->delete())
         {
             return Response::json(array('categoryDeleted' => false, 'errorMessages' =>'Error al borrar la categoria', 'messageType' => 'error'));
         }
@@ -441,7 +402,7 @@ class BlogController extends \BaseController {
 		if(!$id){
 			return Response::json(array('postDeleted' => false, 'errorMessages' =>'Invalid Post', 'messageType' => 'error'));
 		}
-        if(!$this->post->find($id)->delete())
+        if(!Post::find($id)->delete())
         {
             return Response::json(array('postDeleted' => false, 'errorMessages' =>'Error al borrar el post', 'messageType' => 'error'));
         }
@@ -461,7 +422,7 @@ class BlogController extends \BaseController {
 		if(!$id){
 			return Response::json(array('commentDeleted' => false, 'errorMessages' =>'Invalid Comment', 'messageType' => 'error'));
 		}
-        if(!$this->comment->find($id)->delete())
+        if(!Comment::find($id)->delete())
         {
             return Response::json(array('commentDeleted' => false, 'errorMessages' =>'Error al borrar el comentario', 'messageType' => 'error'));
         }

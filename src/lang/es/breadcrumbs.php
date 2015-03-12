@@ -4,10 +4,13 @@ return array(
 
 	/*
 	|--------------------------------------------------------------------------
-	| Pagination Language Lines
+	| Breadcrums Language Lines
 	|--------------------------------------------------------------------------
-	*/
+	*/ 
 
-	'new' => 'New Post',
+	'Globalsettings' => 'Opciones Globales',
+	'languages' => 'Lenguajes',
+
+	'next'     => 'Siguiente &raquo;',
 
 );

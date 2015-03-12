@@ -11,7 +11,7 @@
             <form class="form" id="edit-project-form" method="post" action="portfolio/projects/uploadFile">
             	<div class="box-body clearfix">
                 	<div class="form-group">
-                        <label for="name">{{ trans('Name') }}:</label>
+                        <label for="name">{{ trans('blogfolio::all.name') }}:</label>
                         <input type="text" class="form-control" id="name" name="name" value='{{$project->name}}'>
                     </div>
                     <div class="nav-tabs-custom">
@@ -26,37 +26,36 @@
                                 <li class="{{$active}}"><a data-toggle="tab" href="#{{ $lang->locale }}-content">{{ $lang->name }}</a></li>
                                 <?php $i++ ?>
                         @endforeach
-                            <li class="pull-left header"><i class="fa fa-th"></i>{{ trans('Content') }}</li>
+                            <li class="pull-left header"><i class="fa fa-th"></i>{{ trans('blogfolio::all.content') }}</li>
                         </ul>
                        <div class="tab-content">
-                       	@foreach ($project->projectData as $key => $data)
-                       	
+                        @foreach ($project->projectData as $key => $data)
                         <?php $i = 0?>
-	                        @foreach ($langs as $lang)
-	                            @if ($i == 0)
-	                                    <?php $active = 'active'?>
-	                            @else
-	                                <?php $active = '' ?>
-	                            @endif
-								
-								@if (in_array($lang->id, $allLangs))
-									@if ($data->lang_id == $lang->id)
-										<div id="{{ $lang->locale }}-content" class="tab-pane {{$active}}">
-				                        	 <textarea class="form-control" id="{{$lang->locale}}-content" name="{{$lang->locale}}-content">{{$data->content}}</textarea>
-				                        </div>
-									@endif
-								@else
-								<div id="{{ $lang->locale }}-content" class="tab-pane {{$active}}">
-	                                <textarea class="form-control" id="{{$lang->locale}}-content" name="{{$lang->locale}}-content"></textarea>
-	                            </div>
-								@endif	                            
-	                                <?php $i++ ?>
-	                        @endforeach
-	                    @endforeach
+                            @foreach ($langs as $lang)
+                                @if ($i == 0)
+                                        <?php $active = 'active'?>
+                                @else
+                                    <?php $active = '' ?>
+                                @endif
+                                @if (in_array($lang->id, $allLangs))
+                                    @if ($data->lang == $lang->locale)
+                                        <div id="{{ $lang->locale }}-content" class="tab-pane {{$active}}">
+                                             <textarea class="form-control" id="{{$lang->locale}}-content" name="{{$lang->locale}}-content">{{$data->content}}</textarea>
+                                        </div>
+                                    @endif
+                                @else
+                                <div id="{{ $lang->locale }}-content" class="tab-pane {{$active}}">
+                                    <textarea class="form-control" id="{{$lang->locale}}-content" name="{{$lang->locale}}-content"></textarea>
+                                </div>
+                                @endif                              
+                                    <?php $i++ ?>
+                            @endforeach
+                        @endforeach
+                        
                         </div><!-- /.tab-content -->    
                     </div>
                     <div class="form-group">
-                        <label for="name">{{ trans('Image') }}:</label>
+                        <label for="name">{{ trans('blogfolio::all.image') }}:</label>
                         <input type="file" class="form-control" id="file" name="file" />
                         <input type="hidden" class="form-control" id="imageName" name="imageName" value="{{$project->image}}" />
                         <div id="previewFile">
@@ -68,8 +67,8 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        {{ Form::label('active', trans('Active?')) }}
-                        {{ Form::checkbox('active', 1, true) }}
+                        {{ Form::label('status', trans('blogfolio::all.active')) }}
+                        {{ Form::checkbox('status', 1, true) }}
                     </div>
                     <div class="box-footer">
                    		<button id="create-project" class="btn btn-primary">{{ trans('syntara::all.update') }}</button>

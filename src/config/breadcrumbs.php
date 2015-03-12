@@ -170,4 +170,25 @@ return array(
             'icon' => 'fa fa-file-code-o'
         )
     ),
+    'languages' => array(
+        array(
+            'title' => trans('blogfolio::navigation.languages'),
+            'link' => URL::route('indexLanguages'),
+            'icon' => 'fa fa-flag'
+        )
+    ),
+    'create_language' => array(
+        array(
+            'title' => trans('blogfolio::navigation.languages'),
+            'link' => URL::route('indexLanguages'),
+            'icon' => 'fa fa-flag'
+        )
+    ),
+    'edit_language' => array(
+        array(
+            'title' => trans('blogfolio::navigation.languages'),
+            'link' => URL::route('indexLanguages'),
+            'icon' => 'fa fa-flag'
+        )
+    ),
 );

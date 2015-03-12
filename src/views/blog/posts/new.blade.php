@@ -22,7 +22,7 @@
 					        <li class="{{$active}}"><a data-toggle="tab" href="#{{ $lang->name }}-title">{{ $lang->name }}</a></li>
 					        <?php $i++ ?>
 							@endforeach
-	                        <li class="pull-left header"><i class="fa fa-th"></i>{{ trans('Title') }}</li>
+	                        <li class="pull-left header"><i class="fa fa-th"></i>{{ trans('blogfolio::all.title') }}</li>
 	                    </ul>
                         <div class="tab-content">
 						<?php $i = 0?>
@@ -53,7 +53,7 @@
 					        <li class="{{$active}}"><a data-toggle="tab" href="#{{ $lang->name }}-content">{{ $lang->name }}</a></li>
 					        <?php $i++ ?>
 							@endforeach
-	                        <li class="pull-left header"><i class="fa fa-th"></i>{{ trans('Content') }}</li>
+	                        <li class="pull-left header"><i class="fa fa-th"></i>{{ trans('blogfolio::all.content') }}</li>
 	                    </ul>
                         <div class="tab-content">
 						<?php $i = 0?>
@@ -74,11 +74,11 @@
 
 
                     <div class="form-group">
-                        {{ Form::label('active', trans('Active?')) }}
+                        {{ Form::label('active', trans('blogfolio::all.active')) }}
                        	{{ Form::checkbox('active', 1, true) }}
                     </div>
                     <div class="form-group">
-                        {{ Form::label('category', trans('Category')) }}
+                        {{ Form::label('category', trans('blogfolio::all.category')) }}
                         <select class="form-control" name="category" id="category">
 	                       	@foreach ($cats as $cat)
 	                       		<option value='{{$cat->cat_id}}'>{{$cat->name}}</option>
@@ -86,7 +86,7 @@
                        	</select>
                     </div>
                     <div class="form-group">
-	                        <label for="tags" class="full-width">{{ trans('Tags') }}: <br>
+	                        <label for="tags" class="full-width">{{ trans('blogfolio::all.tags') }}: <br>
 	                    	<input type="text" data-role="tagsinput" class="form-control" id="tags" name="tags" />
 	                    </div>
                     <div class="box-footer">

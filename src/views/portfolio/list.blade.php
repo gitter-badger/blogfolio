@@ -3,8 +3,8 @@
     <tr>
         <th class="col-lg-1" style="text-align: center;"><input type="checkbox" class="check-all"></th>
         <th class="col-lg-1" style="text-align: center;">#</th>
-		<th class="col-lg-2 center">{{ trans('Portfolio') }}</th>
-		<th class="col-lg-2 center">{{ trans('Status') }}</th>
+		<th class="col-lg-2 center">{{ trans('blogfolio::all.name') }}</th>
+		<th class="col-lg-2 center">{{ trans('blogfolio::all.status') }}</th>
     </tr>
 </thead>
 <tbody>

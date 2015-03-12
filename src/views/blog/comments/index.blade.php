@@ -3,7 +3,7 @@
 @section('content')
 <script src="{{ asset('packages/ukadev/blogfolio/js/dashboard/comments.js') }}"></script>
 
-@include('syntara::layouts.dashboard.confirmation-modal',  array('title' => trans('syntara::all.confirm-delete-title'), 'content' => trans('syntara::all.confirm-delete-message'), 'type' => 'delete-comment'))
+@include('syntara::layouts.dashboard.confirmation-modal',  array('title' => trans('blogfolio::all.delete'), 'content' => trans('syntara::all.confirm-delete-message'), 'type' => 'delete-comment'))
 
 <div class="row">
     <div class="col-lg-10">
@@ -13,7 +13,7 @@
 
                 <div class="box-tools">
                     <div class="pull-right">
-                        <a id="delete-item" class="btn btn-danger comments">{{ trans('syntara::all.delete') }}</a>
+                        <a id="delete-item" class="btn btn-danger comments">{{ trans('blogfolio::all.delete') }}</a>
                     </div>
                 </div>
             </div>

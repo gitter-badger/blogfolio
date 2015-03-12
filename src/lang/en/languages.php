@@ -4,10 +4,11 @@ return array(
 
 	/*
 	|--------------------------------------------------------------------------
-	| Pagination Language Lines
+	| Settings Language Lines
 	|--------------------------------------------------------------------------
 	*/
 
-	'new' => 'New Post',
-
+	'languages' => 'Languages',
+	'language' => 'Language',
+	'new' => 'New Language',
 );

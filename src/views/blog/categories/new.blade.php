@@ -22,7 +22,7 @@
 					        <li class="{{$active}}"><a data-toggle="tab" href="#{{ $lang->name }}">{{ $lang->name }}</a></li>
 					        <?php $i++ ?>
 							@endforeach
-	                        <li class="pull-left header"><i class="fa fa-th"></i>{{ trans('catName') }}</li>
+	                        <li class="pull-left header"><i class="fa fa-th"></i>{{ trans('blogfolio::all.name') }}</li>
 	                    </ul>
 	                    <div class="tab-content">
 						<?php $i = 0?>

@@ -11,7 +11,7 @@
             <form class="form" id="create-portfolio-form" method="PUT" onsubmit="return false;">
             	<div class="box-body clearfix">
                 	<div class="form-group">
-                        <label for="name">{{ trans('Name') }}:</label>
+                        <label for="name">{{ trans('blogfolio::all.name') }}:</label>
                         <input type="text" class="form-control" id="name" name="name" value=''>
                     </div>
                     <div class="nav-tabs-custom">
@@ -26,7 +26,7 @@
                                 <li class="{{$active}}"><a data-toggle="tab" href="#{{ $lang->locale }}-content">{{ $lang->name }}</a></li>
                                 <?php $i++ ?>
                         @endforeach
-                            <li class="pull-left header"><i class="fa fa-th"></i>{{ trans('Content') }}</li>
+                            <li class="pull-left header"><i class="fa fa-th"></i>{{ trans('blogfolio::all.content') }}</li>
                         </ul>
                        <div class="tab-content">
                         <?php $i = 0?>
@@ -44,11 +44,11 @@
                         </div><!-- /.tab-content -->    
                     </div>
                     <div class="form-group">
-                        {{ Form::label('active', trans('Active?')) }}
-                       	{{ Form::checkbox('active', 1, true) }}
+                        {{ Form::label('status', trans('blogfolio::all.active')) }}
+                       	{{ Form::checkbox('status', 1, true) }}
                     </div>
                     <div class="form-group">
-                        {{ Form::label('user_skills', trans('Show skills?')) }}
+                        {{ Form::label('user_skills', trans('blogfolio::portfolio.showSkills')) }}
                        	{{ Form::checkbox('user_skills', 1) }}
                     </div>
                     <div class="form-group hidden" id="showSkills">
@@ -67,7 +67,7 @@
                     </div>
                     <div id="social">
                         <div class="form-group" id="showSocial">
-                             {{ Form::label('socialLinks', trans('Social Links')) }}
+                             {{ Form::label('socialLinks', trans('blogfolio::portfolio.socialLinks')) }}
                             <div class="row" id='socialDiv'>
                                 <div class="col-xs-5 width420" id="socialLinks">
                                     <select class="form-control right-no-radius width120 float-left btn btn-info" name="social[name][]">
@@ -84,7 +84,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        {{ Form::label('projects', trans('Projects')) }}: <br>
+                        {{ Form::label('projects', trans('blogfolio::portfolio.projects')) }}: <br>
                         <a id="select-all" href="#">{{trans('select all')}}</a> / <a id="deselect-all" href="#">{{trans('deselect all')}}</a>
                         <select id="projects" name='projects[]' multiple='multiple'>
                             @foreach ($projects as $project)

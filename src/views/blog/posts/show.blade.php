@@ -22,7 +22,7 @@
 						        <li class="{{$active}}"><a data-toggle="tab" href="#{{ $lang->name }}-title">{{ $lang->name }}</a></li>
 						        <?php $i++ ?>
 								@endforeach
-							<li class="pull-left header"><i class="fa fa-th"></i>{{ trans('Title') }}</li>
+							<li class="pull-left header"><i class="fa fa-th"></i>{{ trans('blogfolio::all.title') }}</li>
 						</ul>
                         <div class="tab-content">
                         	@foreach ($post->postData as $key => $data)
@@ -34,7 +34,7 @@
 												<?php $active = '' ?>
 											@endif
 											@if (in_array($lang->id, $allLangs))
-												@if ($data->lang_id == $lang->id)
+												@if ($data->lang == $lang->locale)
 													<div id="{{ $lang->name }}-title" class="tab-pane {{$active}}">
 							                        	<input type="text" class="form-control" id="{{$lang->locale}}-title" name="{{$lang->locale}}-title" value='{{$data->title}}'>
 							                        </div>
@@ -61,7 +61,7 @@
 						        <li class="{{$active}}"><a data-toggle="tab" href="#{{ $lang->name }}-content">{{ $lang->name }}</a></li>
 						        <?php $i++ ?>
 								@endforeach
-							<li class="pull-left header"><i class="fa fa-th"></i>{{ trans('Content') }}</li>
+							<li class="pull-left header"><i class="fa fa-th"></i>{{ trans('blogfolio::all.content') }}</li>
 						</ul>
                         <div class="tab-content">
                         	@foreach ($post->postData as $key => $data)
@@ -73,7 +73,7 @@
 											<?php $active = '' ?>
 										@endif
 										@if (in_array($lang->id, $allLangs))
-											@if ($data->lang_id == $lang->id)
+											@if ($data->lang == $lang->locale)
 												<div id="{{ $lang->name }}-content" class="tab-pane {{$active}}">
 						                        	 <textarea class="form-control" id="{{$lang->locale}}-content" name="{{$lang->locale}}-content">{{$data->content}}</textarea>
 						                        </div>
@@ -89,11 +89,11 @@
                         </div>
             		</div>
 	                    <div class="form-group">
-	                        {{ Form::label('active', trans('Active ?')) }}
+	                        {{ Form::label('active', trans('blogfolio::all.active')) }}
 	                       	{{ Form::checkbox('active', 1, $post->active) }}
 	                    </div>
 	                    <div class="form-group">
-	                        {{ Form::label('category', trans('Category')) }}
+	                        {{ Form::label('category', trans('blogfolio::all.category')) }}
 	                        <select class="form-control" name="category" id="category">
 		                       	@foreach ($cats as $cat)
 		                       		<option value='{{$cat->cat_id}}'{{($cat->cat_id == $post->category_id) ? ' selected' : ''}}>{{$cat->name}}</option>
@@ -101,7 +101,7 @@
 	                       	</select>
 	                    </div>
 	                    <div class="form-group">
-	                        {{ Form::label('tags', trans('Tags')) }}
+	                        {{ Form::label('tags', trans('blogfolio::all.tags')) }}
 	                    	<input type="text" data-role="tagsinput" class="form-control" id="tags" name="tags" value="{{$post->tags}}" />
 	                    </div>
                     <div class="box-footer">

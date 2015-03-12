@@ -4,10 +4,13 @@ return array(
 
 	/*
 	|--------------------------------------------------------------------------
-	| Pagination Language Lines
+	| Blog Language Lines
 	|--------------------------------------------------------------------------
 	*/
 
-	'new' => 'New Post',
-
+	'newPost' => 'New Post',
+	'newCategory' => 'New Category',
+	'author' => 'Author',
+	'comment' => 'Comment',
+	'approved' => 'Approved?',
 );

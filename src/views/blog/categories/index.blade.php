@@ -14,7 +14,7 @@
                 <div class="box-tools ">
                     <div class="pull-right">
                         <a id="delete-item" class="btn btn-danger categories">{{ trans('syntara::all.delete') }}</a>
-                        <a class="btn btn-info btn-new" href="{{ URL::route('newCategory') }}">{{ trans('blogfolio::categories.new') }}</a>
+                        <a class="btn btn-info btn-new" href="{{ URL::route('newCategory') }}">{{ trans('blogfolio::blog.newCategory') }}</a>
                     </div>
                 </div>
             </div>

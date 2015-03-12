@@ -1,40 +1,20 @@
 <?php
 
-use MrJuliuss\Syntara\Controllers\BaseController;
+namespace Ukadev\Blogfolio\Controllers;
 
-class PortfolioController extends \BaseController {
+use Ukadev\Blogfolio\Controllers\BaseController;
+use View;
+use Input;
+use Language;
+use Config;
+use Portfolio;
+use PortfolioProject;
+use PortfolioData;
+use PortfolioProjectData;
+use Response;
+use URL;
 
-    /**
-     * Language Model
-     * @var lang
-     */
-    protected $lang;
-
-    /**
-     * Projects Model
-     * @var pProject
-     */
-    protected $project;
-
-    /**
-     * Portfolio Model
-     * @var portfolio
-     */
-    protected $portfolio;
-
-
-	/**
-     * Inject the models.
-     * @param Language $lang
-     * @param Portfolio $portfolio
-     * @param PortfolioProject $project
-     */
-    public function __construct(Language $lang, Portfolio $portfolio, PortfolioProject $project)
-    {
-        $this->lang = $lang;
-        $this->project = $project;
-        $this->portfolio = $portfolio;
-    }
+class PortfolioController extends BaseController {
 
 
 	/**
@@ -47,9 +27,7 @@ class PortfolioController extends \BaseController {
 	{
 		$portfolios = Portfolio::get();
 
-
-		$lang = new Language();
-		$langs = $lang->where(array('active' => 1))->take(3)->get();
+		$langs = Language::where(array('status' => 1))->take(3)->get();
         $this->layout = View::make('blogfolio::portfolio.index',  compact('portfolios', 'langs'));
         $this->layout->title = trans('Portoflios');
         $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.portfolios');
@@ -64,11 +42,9 @@ class PortfolioController extends \BaseController {
 	 */
 	public function indexProjects()
 	{
-		$projects = $this->project->get();
+		$projects = PortfolioProject::get();
 
-
-		$lang = new Language();
-		$langs = $lang->where(array('active' => 1))->get();
+		$langs = Language::where(array('status' => 1))->get();
         $this->layout = View::make('blogfolio::projects.index',  compact('projects', 'langs'));
         $this->layout->title = trans('Projects');
         $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.projects');
@@ -82,9 +58,8 @@ class PortfolioController extends \BaseController {
 	 */
 	public function newPortfolio()
 	{
-		$lang = new Language();
-		$projects = $this->project->where(array('active' => 1))->get();
-		$langs = $lang->where(array('active' => 1))->get();
+		$projects = PortfolioProject::where(array('status' => 1))->get();
+		$langs = Language::where(array('status' => 1))->get();
 		$this->layout = View::make('blogfolio::portfolio.new', compact('langs', 'projects'));
         $this->layout->title = trans('Portoflios');
         $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.portfolios');
@@ -98,8 +73,7 @@ class PortfolioController extends \BaseController {
 	 */
 	public function newProject()
 	{
-		$lang = new Language();
-		$langs = $lang->where(array('active' => 1))->get();
+		$langs = Language::where(array('status' => 1))->get();
 		$this->layout = View::make('blogfolio::projects.new', compact('langs'));
         $this->layout->title = trans('Projects');
         $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.projects');
@@ -117,17 +91,17 @@ class PortfolioController extends \BaseController {
 		$all = Input::all();
 		$useSkills = (bool) Input::get('user_skills');
 		$social = Input::get('social');
-		$active = (bool) Input::get('active');
+		$status = (bool) Input::get('status');
 		foreach ($all as $key => $value) {
     		if(empty($value)){
     			return Response::json(array('portfolioCreated' => false, 'message' => 'Please, complete the required fields', 'messageType' => 'danger'));
     		}
     	}
 
-		$langs = $this->lang->where(array('active' => 1))->get();
-		$portfolio = $this->portfolio;
+		$langs = Language::where(array('status' => 1))->get();
+		$portfolio = new Portfolio;
 		$portfolio->name = $all['name'];
-		$portfolio->status = $active;
+		$portfolio->status = $status;
 		$portfolio->use_skills = $useSkills;
 
     	if(isset($all['projects'])){
@@ -141,7 +115,7 @@ class PortfolioController extends \BaseController {
     	//remove portfolio single values to save portfolioData
     	unset($all['name']);
     	unset($all['portfolios']);
-    	unset($all['active']);
+    	unset($all['status']);
     	
     	if($portfolio->save()){
     		
@@ -170,7 +144,7 @@ class PortfolioController extends \BaseController {
 		    foreach ($langs as $lang) {
 	        	$portfolioData = new PortfolioData();
 	        	$portfolioData->portfolio_id = $portfolio->id;
-	        	$portfolioData->lang_id = $lang->id;
+	        	$portfolioData->lang = $lang->locale;
 	        	$portfolioData->content = Input::get($lang->locale.'-content');
 
 				$portfolio->portfolioData()->save($portfolioData);
@@ -199,25 +173,25 @@ class PortfolioController extends \BaseController {
     			return Response::json(array('projectCreated' => false, 'message' => 'Please, complete the required fields', 'messageType' => 'danger'));
     		}
     	}
-		$langs = $this->lang->where(array('active' => 1))->get();
+		$langs = Language::where(array('status' => 1))->get();
 
-		$active = (bool) Input::get('active');
-		$project = $this->project;
+		$status = (bool) Input::get('status');
+		$project = new PortfolioProject;
 
 		$project->name = $all['name'];
-		$project->status = $active;
+		$project->status = $status;
 		$project->image = $all['imageName'];
 
     	//remove project single values to save projectData
     	unset($all['name']);
     	unset($all['imageName']);
-    	unset($all['active']);
+    	unset($all['status']);
 
     	if($project->save()){
 		    foreach ($langs as $lang) {
 	        	$projectData = new PortfolioProjectData();
 	        	$projectData->project_id = $project->id;
-	        	$projectData->lang_id = $lang->id;
+	        	$projectData->lang = $lang->id;
 	        	$projectData->content = Input::get($lang->locale.'-content');
 
 				$project->projectData()->save($projectData);
@@ -239,11 +213,10 @@ class PortfolioController extends \BaseController {
 	{
 		$skills = array();
 		$social = array();
-		$lang = new Language();
-		$projects = $this->project->where(array('active' => 1))->get();
-		$portfolio = $this->portfolio->find($id);
-		$langs = $lang->where(array('active' => 1))->get();
-		$allLang = $this->lang->select('id')->where(array('active' => 1))->get();
+		$projects = PortfolioProject::where(array('status' => 1))->get();
+		$portfolio = Portfolio::find($id);
+		$langs = Language::where(array('status' => 1))->get();
+		$allLang = Language::select('id')->where(array('status' => 1))->get();
 		foreach ($allLang as $lang) {
 			$allLangs[] = $lang->id;
 		}
@@ -275,10 +248,9 @@ class PortfolioController extends \BaseController {
 	 */
 	public function showProject($id)
 	{
-		$lang = $this->lang;
-		$project = $this->project->find($id);
-		$langs = $lang->where(array('active' => 1))->get();
-		$allLang = $this->lang->select('id')->where(array('active' => 1))->get();
+		$project = PortfolioProject::find($id);
+		$langs = Language::where(array('status' => 1))->get();
+		$allLang = Language::select('id')->where(array('status' => 1))->get();
 		foreach ($allLang as $lang) {
 			$allLangs[] = $lang->id;
 		}
@@ -304,17 +276,17 @@ class PortfolioController extends \BaseController {
 		$all = Input::all();
 
 		$useSkills = (bool) Input::get('user_skills');
-		$active = (bool) Input::get('active');
+		$status = (bool) Input::get('status');
 		foreach ($all as $key => $value) {
     		if(empty($value)){
     			return Response::json(array('portfolioUpdated' => false, 'message' => 'Please, complete the required fields', 'messageType' => 'danger'));
     		}
     	}
-		$langs = $this->lang->where(array('active' => 1))->get();
+		$langs = Language::where(array('status' => 1))->get();
 
 		$portfolio = Portfolio::find($id);
 		$portfolio->name = $all['name'];
-		$portfolio->status = $active;
+		$portfolio->status = $status;
 		$portfolio->use_skills = $useSkills;
 
 		if($useSkills){
@@ -339,14 +311,14 @@ class PortfolioController extends \BaseController {
     	//remove portfolio single values to save portfolioData
     	unset($all['name']);
     	unset($all['portfolios']);
-    	unset($all['active']);
+    	unset($all['status']);
 
     	if($portfolio->save()){
     		if(PortfolioData::where(array('portfolio_id' => $id))->delete()){
 			    foreach ($langs as $lang) {
 		        	$portfolioData = new PortfolioData();
 		        	$portfolioData->portfolio_id = $portfolio->id;
-		        	$portfolioData->lang_id = $lang->id;
+		        	$portfolioData->lang = $lang->locale;
 		        	$portfolioData->content = Input::get($lang->locale.'-content');
 
 					$portfolio->portfolioData()->save($portfolioData);
@@ -382,26 +354,26 @@ class PortfolioController extends \BaseController {
     			return Response::json(array('projectUpdated' => false, 'message' => 'Please, complete the required fields', 'messageType' => 'danger'));
     		}
     	}
-		$langs = $this->lang->where(array('active' => 1))->get();
+		$langs = Language::where(array('status' => 1))->get();
 
-		$active = (bool) Input::get('active');
+		$status = (bool) Input::get('status');
 		$project = PortfolioProject::find($id);
 
 		$project->name = $all['name'];
-		$project->status = $active;
+		$project->status = $status;
 		$project->image = $all['imageName'];
 
     	//remove project single values to save projectData
     	unset($all['name']);
     	unset($all['imageName']);
-    	unset($all['active']);
+    	unset($all['status']);
 
     	if($project->save()){
     		if(PortfolioProjectData::where(array('project_id' => $id))->delete()){
 			    foreach ($langs as $lang) {
 		        	$projectData = new PortfolioProjectData();
 		        	$projectData->project_id = $project->id;
-		        	$projectData->lang_id = $lang->id;
+		        	$projectData->lang = $lang->locale;
 		        	$projectData->content = Input::get($lang->locale.'-content');
 
 					$project->projectData()->save($projectData);
@@ -427,7 +399,7 @@ class PortfolioController extends \BaseController {
 		if(!$id){
 			return Response::json(array('portfolioDeleted' => false, 'errorMessages' =>'Invalid Portfolio', 'messageType' => 'error'));
 		}
-        if(!$this->portfolio->find($id)->delete())
+        if(!Portfolio::find($id)->delete())
         {
             return Response::json(array('portfolioDeleted' => false, 'errorMessages' =>'Error al borrar el portfolio', 'messageType' => 'error'));
         }
@@ -448,7 +420,7 @@ class PortfolioController extends \BaseController {
 		if(!$id){
 			return Response::json(array('projectDeleted' => false, 'errorMessages' =>'Invalid Project', 'messageType' => 'error'));
 		}
-        if(!$this->project->find($id)->delete())
+        if(!PortfolioProject::find($id)->delete())
         {
             return Response::json(array('projectDeleted' => false, 'errorMessages' =>'Error al borrar el proyecto', 'messageType' => 'error'));
         }
@@ -466,7 +438,6 @@ class PortfolioController extends \BaseController {
 	 */
 	function uploadFile(){
         $data = array();
-
 		if(isset($_GET['files']))
 		{  
 		    $error = false;
@@ -491,6 +462,7 @@ class PortfolioController extends \BaseController {
 		    $data = array('success' => 'Form was submitted', 'formData' => $_POST);
 		}
 
-		echo json_encode($data);
+		return Response::json($data);
+		
 	}
 }

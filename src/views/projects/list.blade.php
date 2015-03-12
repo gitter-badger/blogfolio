@@ -3,7 +3,7 @@
     <tr>
         <th class="col-lg-1" style="text-align: center;"><input type="checkbox" class="check-all"></th>
         <th class="col-lg-1" style="text-align: center;">#</th>
-		<th class="col-lg-2 center">{{ trans('Project') }}</th>
+		<th class="col-lg-2 center">{{ trans('blogfolio::portfolio.project') }}</th>
     </tr>
 </thead>
 <tbody>

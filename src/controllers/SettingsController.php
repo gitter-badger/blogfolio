@@ -1,9 +1,18 @@
 <?php
 
+namespace Ukadev\Blogfolio\Controllers;
+
 use Ukadev\Blogfolio\Controllers\BaseController;
+use Settings;
+use Language;
+use View;
+use Config;
+use Validator;
+use Response;
+use Input;
 
 
-class SettingsController extends \BaseController {
+class SettingsController extends BaseController {
 
 
 
@@ -13,6 +22,7 @@ class SettingsController extends \BaseController {
 	        'site_email' => array('required', 'min:3', 'max:100')
     	);
 
+	
 	/**
 	 * Display a listing of the resource.
 	 * GET settings
@@ -20,7 +30,7 @@ class SettingsController extends \BaseController {
 	 * @return Response
 	 */
 	public function index()
-	{
+	{	
 		$settings = Settings::all();
 		$langs = Language::get();
 		$this->layout = View::make('blogfolio::settings.index-settings', compact('settings', 'templates', 'langs'));

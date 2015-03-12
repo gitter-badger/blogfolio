@@ -1,6 +1,6 @@
 <?php
 
-class Template extends Eloquent {
+class Template extends \Eloquent {
 
 	protected $table = 'themes';
 

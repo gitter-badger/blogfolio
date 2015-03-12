@@ -11,7 +11,7 @@
             <form class="form" id="create-project-form" method="PUT">
                 <div class="box-body clearfix">
                     <div class="form-group">
-                        <label for="name">{{ trans('Name') }}:</label>
+                        <label for="name">{{ trans('blogfolio::all.name') }}:</label>
                         <input type="text" class="form-control" id="name" name="name" value=''>
                     </div>
                     <div class="nav-tabs-custom">
@@ -26,7 +26,7 @@
                                 <li class="{{$active}}"><a data-toggle="tab" href="#{{ $lang->locale }}-content">{{ $lang->name }}</a></li>
                                 <?php $i++ ?>
                         @endforeach
-                            <li class="pull-left header"><i class="fa fa-th"></i>{{ trans('Content') }}</li>
+                            <li class="pull-left header"><i class="fa fa-th"></i>{{ trans('blogfolio::all.content') }}</li>
                         </ul>
                        <div class="tab-content">
                        <?php $i = 0?>
@@ -44,7 +44,7 @@
                         </div><!-- /.tab-content -->    
                     </div>
                     <div class="form-group">
-                        <label for="name">{{ trans('Image') }}:</label>
+                        <label for="name">{{ trans('blogfolio::all.image') }}:</label>
                         <input type="file" class="form-control" id="file" name="file" />
                         <input type="hidden" class="form-control" id="imageName" name="imageName" value="default.png" />
                         <div id="previewFile">
@@ -52,8 +52,8 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        {{ Form::label('active', trans('Active?')) }}
-                        {{ Form::checkbox('active', 1, true) }}
+                        {{ Form::label('status', trans('blogfolio::all.active')) }}
+                        {{ Form::checkbox('status', 1, true) }}
                     </div>
                     <div class="box-footer">
                         <button id="create-project" class="btn btn-primary">{{ trans('syntara::all.create') }}</button>
