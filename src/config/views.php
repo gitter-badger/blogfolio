@@ -8,9 +8,9 @@ return array(
     'content' => 'blogfolio::layouts.dashboard.content',
 
     // dashboard
-    'dashboard-index' => 'syntara::dashboard.index',
+    'dashboard-index' => 'blogfolio::dashboard.index',
     'login' => 'blogfolio::dashboard.login',
-    'error' => 'syntara::dashboard.error',
+    'error' => 'blogfolio::dashboard.error',
 
     // users
     'users-index' => 'blogfolio::user.index-user',

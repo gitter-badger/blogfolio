@@ -10,8 +10,14 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-
 Route::pattern('id', '[0-9]+');
+
+
+Route::get('/', function()
+{
+    return 1;
+});
+
 
 
 /**

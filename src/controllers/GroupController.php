@@ -2,7 +2,7 @@
 
 namespace Ukadev\Blogfolio\Controllers;
 
-use Ukadev\Blogfolio\Controllers\BaseController;
+use Ukadev\Blogfolio\Controllers\AdminController;
 use MrJuliuss\Syntara\Services\Validators\Group as GroupValidator;
 use PermissionProvider;
 use View;
@@ -14,7 +14,7 @@ use Request;
 use DB;
 use URL;
 
-class GroupController extends BaseController 
+class GroupController extends AdminController 
 {
     /**
     * List of groups

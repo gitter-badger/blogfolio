@@ -12,7 +12,6 @@ return array(
 	'posts' => 'Posts',
 	'comments' => 'Commentarios',
 	'categories' => 'Categor&iacute;as',
-	'posts' => 'Posts',
 	'portfolio' => 'Portfolio',
 	'portfolios' => 'Portfolios',
 	'galleries' =>	'Galer&iacute;as',

@@ -2,7 +2,7 @@
 
 namespace Ukadev\Blogfolio\Controllers;
 
-use Ukadev\Blogfolio\Controllers\BaseController;
+use Ukadev\Blogfolio\Controllers\AdminController;
 use MrJuliuss\Syntara\Services\Validators\User as UserValidator;
 use View;
 use Input;
@@ -11,7 +11,7 @@ use Redirect;
 use Config;
 use Response;
 
-class DashboardController extends BaseController
+class DashboardController extends AdminController
 {
     /**
     * Index loggued page

@@ -2,7 +2,7 @@
 
 namespace Ukadev\Blogfolio\Controllers;
 
-use Ukadev\Blogfolio\Controllers\BaseController;
+use Ukadev\Blogfolio\Controllers\AdminController;
 use MrJuliuss\Syntara\Services\Validators\User as UserValidator;
 use View;
 use Input;
@@ -15,7 +15,7 @@ use PermissionProvider;
 use DB;
 use Mail;
 
-class UserController extends BaseController 
+class UserController extends AdminController 
 {
 
     /**

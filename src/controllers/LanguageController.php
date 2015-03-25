@@ -2,7 +2,7 @@
 
 namespace Ukadev\Blogfolio\Controllers;
 
-use Ukadev\Blogfolio\Controllers\BaseController;
+use Ukadev\Blogfolio\Controllers\AdminController;
 use Config;
 use Input;
 use Response;
@@ -12,7 +12,7 @@ use Language;
 use View;
 use App;
 
-class LanguageController extends BaseController 
+class LanguageController extends AdminController 
 {
 
 	/**

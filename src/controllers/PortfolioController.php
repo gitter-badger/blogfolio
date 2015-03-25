@@ -2,7 +2,7 @@
 
 namespace Ukadev\Blogfolio\Controllers;
 
-use Ukadev\Blogfolio\Controllers\BaseController;
+use Ukadev\Blogfolio\Controllers\AdminController;
 use View;
 use Input;
 use Language;
@@ -14,7 +14,7 @@ use PortfolioProjectData;
 use Response;
 use URL;
 
-class PortfolioController extends BaseController {
+class PortfolioController extends AdminController {
 
 
 	/**

@@ -2,7 +2,7 @@
 
 namespace Ukadev\Blogfolio\Controllers;
 
-use Ukadev\Blogfolio\Controllers\BaseController;
+use Ukadev\Blogfolio\Controllers\AdminController;
 use MrJuliuss\Syntara\Services\Validators\Permission as PermissionValidator;
 use PermissionProvider;
 use View;
@@ -12,7 +12,7 @@ use Response;
 use Request;
 use URL;
 
-class PermissionController extends BaseController 
+class PermissionController extends AdminController 
 {
     /**
     * List of permissions

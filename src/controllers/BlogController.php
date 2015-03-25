@@ -2,7 +2,7 @@
 
 namespace Ukadev\Blogfolio\Controllers;
 
-use Ukadev\Blogfolio\Controllers\BaseController;
+use Ukadev\Blogfolio\Controllers\AdminController;
 use Ukadev\Blogfolio\Helpers;
 use Post;
 use PostData;
@@ -21,7 +21,7 @@ use Settings;
 use Sentry;
 use Validator;
 
-class BlogController extends BaseController {
+class BlogController extends AdminController {
 
 
 	var $commentRules =  array(
