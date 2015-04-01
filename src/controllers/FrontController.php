@@ -18,7 +18,7 @@ use PortfolioData;
 use PortfolioProjectData;
 use Project;
 
-class AdminController extends Controller 
+class FrontController extends Controller 
 {
     
 
@@ -27,7 +27,7 @@ class AdminController extends Controller
     */
     public function __construct(Language $lang, Portfolio $portfolio, PortfolioProject $project)
     {
-        App::setlocale(Settings::get('site_admin_lang'));
+        App::setlocale(Settings::get('site_default_lang'));
     }
 
 
@@ -38,9 +38,9 @@ class AdminController extends Controller
     */
 
     protected function setupLayout()
-    {
-        $this->layout = View::make(Config::get('blogfolio::views.master'));
-        $this->layout->title = Settings::get('site_name').' - Admin';
+    {   
+        $this->layout = View::make(Config::get('blogfolio::views.frontMaster'));
+        $this->layout->title = Settings::get('site_name');
         $this->layout->breadcrumb = array();
     }
 }

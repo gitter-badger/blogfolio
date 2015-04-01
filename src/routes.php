@@ -12,13 +12,7 @@
 */
 Route::pattern('id', '[0-9]+');
 
-
-Route::get('/', function()
-{
-    return 1;
-});
-
-
+Route::get('/', 'Ukadev\Blogfolio\Controllers\FrontendController@getIndex');
 
 /**
  * Loggued routes without permission

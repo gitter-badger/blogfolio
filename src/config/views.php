@@ -1,11 +1,18 @@
 <?php
 
 return array(
+    // Layouts Front
+    'frontMaster' => 'blogfolio::layouts.frontend.master',
+    'frontHeader' => 'blogfolio::layouts.frontend.header',
+    'frontContent' => 'blogfolio::layouts.frontend.content',
+    'frontHeader' => 'blogfolio::layouts.frontend.header',
+
     // layouts
     'master' => 'blogfolio::layouts.dashboard.master',
     'header' => 'blogfolio::layouts.dashboard.header',
     'left' => 'blogfolio::layouts.dashboard.left',
     'content' => 'blogfolio::layouts.dashboard.content',
+
 
     // dashboard
     'dashboard-index' => 'blogfolio::dashboard.index',
