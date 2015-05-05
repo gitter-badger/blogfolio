@@ -12,7 +12,30 @@
 */
 Route::pattern('id', '[0-9]+');
 
-Route::get('/', 'Ukadev\Blogfolio\Controllers\FrontendController@getIndex');
+Route::get('/', array(
+    'as' => 'frontIndex',
+    'uses' => 'Ukadev\Blogfolio\Controllers\FrontendController@getIndex')
+);
+Route::get('/about', array(
+    'as' => 'frontAbout',
+    'uses' => 'Ukadev\Blogfolio\Controllers\FrontendController@getAbout')
+);
+Route::get('/contact', array(
+    'as' => 'frontContact',
+    'uses' => 'Ukadev\Blogfolio\Controllers\FrontendController@getContact')
+);
+Route::get('/blog', array(
+    'as' => 'frontBlog',
+    'uses' => 'Ukadev\Blogfolio\Controllers\FrontendController@getBlog')
+);
+Route::get('/blog/{slug}', array(
+    'as' => 'frontBlogItem',
+    'uses' => 'Ukadev\Blogfolio\Controllers\FrontendController@getBlogItem')
+);
+Route::get('/portfolio', array(
+    'as' => 'frontPortfolio',
+    'uses' => 'Ukadev\Blogfolio\Controllers\FrontendController@getportfolio')
+);
 
 /**
  * Loggued routes without permission
@@ -271,30 +294,30 @@ Route::group(array('before' => 'basicAuth|hasPermissions', 'prefix' => Config::g
     /**
      * Portfolios routes
      */
+    // Route::get('portfolio', array(
+    //     'as' => 'indexPortfolios',
+    //     'uses' => 'Ukadev\Blogfolio\Controllers\PortfolioController@indexPortfolios')
+    // );
+    // Route::get('portfolio/new', array(
+    //     'as' => 'newPortfolio',
+    //     'uses' => 'Ukadev\Blogfolio\Controllers\PortfolioController@newPortfolio')
+    // );
+    // Route::post('portfolio/new', array(
+    //     'as' => 'storePortfolio',
+    //     'uses' => 'Ukadev\Blogfolio\Controllers\PortfolioController@storePortfolio')
+    // );
     Route::get('portfolio', array(
         'as' => 'indexPortfolios',
-        'uses' => 'Ukadev\Blogfolio\Controllers\PortfolioController@indexPortfolios')
-    );
-    Route::get('portfolio/new', array(
-        'as' => 'newPortfolio',
-        'uses' => 'Ukadev\Blogfolio\Controllers\PortfolioController@newPortfolio')
-    );
-    Route::post('portfolio/new', array(
-        'as' => 'storePortfolio',
-        'uses' => 'Ukadev\Blogfolio\Controllers\PortfolioController@storePortfolio')
-    );
-    Route::get('portfolio/{id}', array(
-        'as' => 'showPortfolio',
         'uses' => 'Ukadev\Blogfolio\Controllers\PortfolioController@showPortfolio')
     );
-    Route::put('portfolio/{id}', array(
+    Route::put('portfolio', array(
         'as' => 'updatePortfolio',
         'uses' => 'Ukadev\Blogfolio\Controllers\PortfolioController@updatePortfolio')
     );
-    Route::delete('portfolio/{id}', array(
-        'as' => 'deletePortfolio',
-        'uses' => 'Ukadev\Blogfolio\Controllers\PortfolioController@deletePortfolio')
-    );
+    // Route::delete('portfolio/{id}', array(
+    //     'as' => 'deletePortfolio',
+    //     'uses' => 'Ukadev\Blogfolio\Controllers\PortfolioController@deletePortfolio')
+    // );
 
     /**
      * Portfolios projects routes

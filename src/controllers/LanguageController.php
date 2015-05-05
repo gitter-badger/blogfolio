@@ -72,6 +72,12 @@ class LanguageController extends AdminController
     			return Response::json(array('languageCreated' => false, 'message' => 'Please, complete the required fields', 'messageType' => 'danger'));
     		}
         }
+        $language = new Language();
+        $language->name = Input::get('name');
+        $language->status = (bool)Input::get('status');
+        $language->locale = Input::get('locale');
+
+        $language->save();
 
         return Response::json(array('languageCreated' => true, 'redirectUrl' => URL::route('indexLanguages')));
 	}
@@ -87,7 +93,8 @@ class LanguageController extends AdminController
 	{	
 		$name = Input::get('name');
 		$locale = Input::get('locale');
-        Language::where(array('id' => $id))->update(array('name' => $name, 'locale' => $locale));
+		$status = (bool)Input::get('status');
+        Language::where(array('id' => $id))->update(array('name' => $name, 'locale' => $locale, 'status' => $status));
 
         return Response::json(array('languageUpdated' => true, 'redirectUrl' => URL::route('indexLanguages')));
 	}

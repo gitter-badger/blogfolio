@@ -1,4 +1,4 @@
-<aside class="left-side sidebar-offcanvas">
+<aside class="main-sidebar sidebar-offcanvas">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
         <!-- Sidebar user panel -->
@@ -76,7 +76,7 @@
                     </a>
                     <ul class="treeview-menu">
                         @if($currentUser->hasAccess('view-portfolios-list'))
-                        <li class="{{Active::route(array('indexPortfolios', 'newPortfolio', 'showPortfolio'))}}"><a href="{{ URL::route('indexPortfolios') }}"><i class="fa fa-book"></i> {{ trans('blogfolio::navigation.portfolios') }}</a></li>
+                        <li class="{{Active::route(array('indexPortfolios', 'newPortfolio', 'showPortfolio'))}}"><a href="{{ URL::route('indexPortfolios') }}"><i class="fa fa-book"></i> {{ trans('blogfolio::navigation.portfolio') }}</a></li>
                         @endif
                         @if($currentUser->hasAccess('view-portfolios-projects'))
                         <li class="{{Active::route(array('indexProjects', 'showProject', 'newProject'))}}"><a href="{{ URL::route('indexProjects') }}"><i class="fa fa-file-code-o"></i> {{ trans('blogfolio::navigation.projects') }}</a></li>

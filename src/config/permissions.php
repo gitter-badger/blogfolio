@@ -58,11 +58,13 @@ return array(
         'updateProject' => 'projects-management',
         'postProject'   => 'projects-management',
         'deleteProject' => 'projects-management',
+        'storeProject'    => 'projects-management',
         'uploadFile'    => 'projects-management',
         'indexLanguages'=> 'languages-management',
         'newLanguage'=> 'languages-management',
         'showLanguage'=> 'languages-management',
         'updateLanguage'=> 'languages-management',
         'postLanguage'=> 'languages-management',
+        'storeLanguage'=> 'languages-management',
         'deleteLanguage' => 'languages-management'
 );

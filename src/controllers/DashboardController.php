@@ -56,7 +56,12 @@ class DashboardController extends AdminController
             );
 
             // authenticate user
-            Sentry::authenticate($credentials, (bool)Input::get('remember'));
+            try{
+              Sentry::authenticate($credentials, (bool)Input::get('remember'));
+            }
+            catch (\RuntimeException $e){
+                return Response::json(array('logged' => false, 'errorMessage' => trans($e->getMessage()), 'errorType' => 'danger'));
+            }
         }
         catch(\Cartalyst\Sentry\Throttling\UserBannedException $e)
         {

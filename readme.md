@@ -15,9 +15,8 @@ Tasks:
 - Blog Comments System - 100%
 - Blog Categories System - 100%
 - Portfolio System - 100%
-- Language System - 50%
-- English Language - 60%
-- Spanish Language - 10%
+- Language System - 100%
+- English Language - 80%
+- Spanish Language - 30%
 - Japanese Language - 0%
-- Front-end System - 20%
-- Static Pages - 0%
+- Front-end System - 30%

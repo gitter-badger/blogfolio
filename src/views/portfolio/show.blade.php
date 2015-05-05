@@ -5,14 +5,19 @@
 <div class="row">
     <div class="col-lg-12">
         <section class="box box-primary">
-            <div class="box-header">
-                <h3 class="box-title">{{ trans("blogfolio::navigation.portfolio") }}</h3>
-            </div>
             <form class="form" id="edit-portfolio-form" method="PUT" onsubmit="return false;">
             	<div class="box-body clearfix">
                 	<div class="form-group">
-                        <label for="name">{{ trans('blogfolio::all.name') }}:</label>
-                        <input type="text" class="form-control" id="name" name="name" value='{{$portfolio->name}}'>
+                        <label for="first_name">{{ trans('blogfolio::all.first_name') }}:</label>
+                        <input type="text" class="form-control" id="first_name" name="first_name" value='{{$portfolio->first_name}}'>
+                    </div>
+                    <div class="form-group">
+                        <label for="last_name">{{ trans('blogfolio::all.last_name') }}:</label>
+                        <input type="text" class="form-control" id="last_name" name="last_name" value='{{$portfolio->last_name}}'>
+                    </div>
+                    <div class="form-group">
+                        <label for="date_of_birth">{{ trans('blogfolio::all.dOB') }}:</label>
+                        <input type="text" class="form-control datepicker" id="date_of_birth" name="date_of_birth" value='{{$portfolio->dOB}}'>
                     </div>
                     <div class="nav-tabs-custom">
                         <ul class="nav nav-tabs pull-right">
@@ -167,14 +172,14 @@
                     <div class="form-group">
                         {{ Form::label('projects', trans('blogfolio::portfolio.projects')) }}: <br>
                         <a id="select-all" href="#">{{trans('select all')}}</a> / <a id="deselect-all" href="#">{{trans('deselect all')}}</a>
-                        <select id="projects" name='projects[]' multiple='multiple'>
+                        <select id="projects-select" name='projects[]' multiple='multiple'>
                             @foreach ($projects as $project)
                                 <option value='{{$project->id}}'{{(in_array($project->id, $portfolio->projects))? ' selected' : ''}}>{{$project->name}}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="box-footer">
-                   		<button id="create-post" class="btn btn-primary">{{ trans('syntara::all.create') }}</button>
+                   		<button id="create-post" class="btn btn-primary">{{ trans('syntara::all.update') }}</button>
                    	</div>
             	</div>
             </form>

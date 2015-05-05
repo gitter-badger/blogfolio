@@ -44,14 +44,14 @@ class BlogfolioServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		 /*
-         * Register the service provider for the dependency.
-         */
+		/*
+		* Register the service provider for the dependency.
+		*/
         $this->app->register('Thomaswelton\LaravelGravatar\LaravelGravatarServiceProvider');
 
-        /*
-         * Create alias for the dependency if its not already created.
-         */
+		/*
+		* Create alias for the dependency if its not already created.
+		*/
         $this->app->booting(function(){
             $loader = \Illuminate\Foundation\AliasLoader::getInstance();
             $aliases = \Config::get('app.aliases');

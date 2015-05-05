@@ -20,6 +20,9 @@ return array(
     'delete' => 'Borrar',
     'status' => 'Estado',
     'image' => 'Imagen',
+    'first_name' => 'Nombre',
+    'last_name' => 'Apellidos',
+    'dOB' => 'Fecha de Nacimiento',
 
     
 );

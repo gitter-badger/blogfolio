@@ -1,6 +1,6 @@
 {
     "name": "ukadev/blogfolio",
-    "description": "Blog and prtfolio System using Sintara (its based on Laravel 4)",
+    "description": "Blog and prtfolio System using Sintara (based on Laravel 4)",
     "keywords": ["laravel","blogfolio","theme","admin","cms","panel","administration","blog","portfolio"],
     "license": "MIT",
     "authors": [
@@ -15,7 +15,7 @@
         "mrjuliuss/syntara": "1.2.*",
         "thomaswelton/laravel-gravatar": "0.1.x",
         "hieu-le/active": "~1.0",
-        "anlutro/l4-settings": "0.2.8"
+        "anlutro/l4-settings": "dev-master"
     },
     "autoload": {
         "classmap": [

@@ -56,10 +56,16 @@ class SettingsController extends AdminController {
             }
 
 
-
 		foreach (Input::all() as $key => $value) {
 			Settings::set($key, $value);
 		}
+
+		if (Input::has('site_offline')) {
+        	Settings::set('site_offline', 1);
+        }else{
+        	Settings::set('site_offline', 0);
+        }
+
 		return Response::json(array('settingsUpdated' => true, 'message' => trans('Las opciones se han guardado correctamente'), 'messageType' => 'success'));
 	}
 

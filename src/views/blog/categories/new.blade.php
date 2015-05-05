@@ -33,7 +33,7 @@
 									<?php $active = '' ?>
 								@endif
 						    	<div id="{{ $lang->name }}" class="tab-pane {{$active}}">
-		                        	<input type="text" class="form-control" id="lang_id-{{$lang->id}}" name="lang_id-{{$lang->id}}" value=''>
+		                        	<input type="text" class="form-control" id="lang_id-{{$lang->locale}}" name="lang_id-{{$lang->locale}}" value=''>
 		                        </div>
 		                        	<?php $i++ ?>
 							@endforeach

@@ -112,7 +112,7 @@ $(function()
             }).done(function(result)
             {
                 showStatusMessage(result.message, result.messageType);
-                $(este).parent().parent().parent().fadeOut('slow');
+                $(este).parent().parent().fadeOut('slow');
             });
         });
 

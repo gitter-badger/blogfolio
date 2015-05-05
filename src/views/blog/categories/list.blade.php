@@ -17,7 +17,7 @@
             <input type="checkbox" data-category-id="{{ $cat['id'] }}">
         </td>
         <td style="text-align: center;">{{ $cat['id'] }}</td>
-        @foreach ($cat->catData as $key =>$name)
+        @foreach ($cat->catData as $key => $name)
         	@if ($name->lang == Settings::get('site_admin_lang'))
         		<td>{{ $name->name }}</td>
         	@endif

@@ -1,4 +1,4 @@
-<header class="header">
+<header class="main-header">
     <a href="{{ URL::route('indexDashboard') }}" class="logo">
         {{ (!empty($siteName)) ? $siteName : "Blogfolio"}}
     </a>
@@ -11,7 +11,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </a>
-        <div class="navbar-right">
+        <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
 
                 @if(Sentry::check())

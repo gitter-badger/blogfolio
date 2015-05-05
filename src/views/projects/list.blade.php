@@ -8,12 +8,12 @@
 </thead>
 <tbody>
     @foreach ($projects as $project)
-    <tr onclick="document.location='{{ URL::route('showProject', $project->id)}}'">
+    <tr>
         <td style="text-align: center;" class="row1">
             <input type="checkbox" data-project-id="{{ $project->id }}">
         </td>
-        <td style="text-align: center;">{{ $project->id }}</td>
-	    <td>{{ $project->name }}</td>
+        <td style="text-align: center;" onclick="document.location='{{ URL::route('showProject', $project->id)}}'">{{ $project->id }}</td>
+	    <td onclick="document.location='{{ URL::route('showProject', $project->id)}}'">{{ $project->name }}</td>
     </tr>
     @endforeach
 </tbody>

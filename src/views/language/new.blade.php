@@ -8,7 +8,7 @@
             <div class="box-header">
                 <h3 class="box-title">{{ trans("blogfolio::navigation.language") }}</h3>
             </div>
-            <form class="form" id="new-language-form" method="post">
+            <form class="form" id="create-language-form" method="post">
                 <div class="box-body clearfix">
                     <div class="form-group">
                         <label for="name">{{ trans('Name') }}:</label>

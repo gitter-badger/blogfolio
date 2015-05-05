@@ -23,15 +23,15 @@ class PortfolioController extends AdminController {
 	 *
 	 * @return Response
 	 */
-	public function indexPortfolios()
-	{
-		$portfolios = Portfolio::get();
+	// public function indexPortfolios()
+	// {
+	// 	$portfolios = Portfolio::get();
 
-		$langs = Language::where(array('status' => 1))->take(3)->get();
-        $this->layout = View::make('blogfolio::portfolio.index',  compact('portfolios', 'langs'));
-        $this->layout->title = trans('Portoflios');
-        $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.portfolios');
-	}
+	// 	$langs = Language::where(array('status' => 1))->take(3)->get();
+ //        $this->layout = View::make('blogfolio::portfolio.index',  compact('portfolios', 'langs'));
+ //        $this->layout->title = trans('Portoflios');
+ //        $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.portfolios');
+	// }
 
 
 	/**
@@ -56,14 +56,14 @@ class PortfolioController extends AdminController {
 	 *
 	 * @return Response
 	 */
-	public function newPortfolio()
-	{
-		$projects = PortfolioProject::where(array('status' => 1))->get();
-		$langs = Language::where(array('status' => 1))->get();
-		$this->layout = View::make('blogfolio::portfolio.new', compact('langs', 'projects'));
-        $this->layout->title = trans('Portoflios');
-        $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.portfolios');
-	}
+	// public function newPortfolio()
+	// {
+	// 	$projects = PortfolioProject::where(array('status' => 1))->get();
+	// 	$langs = Language::where(array('status' => 1))->get();
+	// 	$this->layout = View::make('blogfolio::portfolio.new', compact('langs', 'projects'));
+ //        $this->layout->title = trans('Portoflios');
+ //        $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.portfolios');
+	// }
 
 	/**
 	 * Show the form for creating a new resource.
@@ -85,76 +85,76 @@ class PortfolioController extends AdminController {
 	 *
 	 * @return Response
 	 */
-	public function storePortfolio()
-	{	
-		$socials = array();
-		$all = Input::all();
-		$useSkills = (bool) Input::get('user_skills');
-		$social = Input::get('social');
-		$status = (bool) Input::get('status');
-		foreach ($all as $key => $value) {
-    		if(empty($value)){
-    			return Response::json(array('portfolioCreated' => false, 'message' => 'Please, complete the required fields', 'messageType' => 'danger'));
-    		}
-    	}
+	// public function storePortfolio()
+	// {	
+	// 	$socials = array();
+	// 	$all = Input::all();
+	// 	$useSkills = (bool) Input::get('user_skills');
+	// 	$social = Input::get('social');
+	// 	$status = (bool) Input::get('status');
+	// 	foreach ($all as $key => $value) {
+ //    		if(empty($value)){
+ //    			return Response::json(array('portfolioCreated' => false, 'message' => 'Please, complete the required fields', 'messageType' => 'danger'));
+ //    		}
+ //    	}
 
-		$langs = Language::where(array('status' => 1))->get();
-		$portfolio = new Portfolio;
-		$portfolio->name = $all['name'];
-		$portfolio->status = $status;
-		$portfolio->use_skills = $useSkills;
+	// 	$langs = Language::where(array('status' => 1))->get();
+	// 	$portfolio = new Portfolio;
+	// 	$portfolio->name = $all['name'];
+	// 	$portfolio->status = $status;
+	// 	$portfolio->use_skills = $useSkills;
 
-    	if(isset($all['projects'])){
-    		$projects = array();
-    		foreach ($all['projects'] as $value) {
-				array_push($projects, $value);
-			}
-    		$projects = implode(',', $projects);
-			$portfolio->projects = $projects;
-    	}
-    	//remove portfolio single values to save portfolioData
-    	unset($all['name']);
-    	unset($all['portfolios']);
-    	unset($all['status']);
+ //    	if(isset($all['projects'])){
+ //    		$projects = array();
+ //    		foreach ($all['projects'] as $value) {
+	// 			array_push($projects, $value);
+	// 		}
+ //    		$projects = implode(',', $projects);
+	// 		$portfolio->projects = $projects;
+ //    	}
+ //    	//remove portfolio single values to save portfolioData
+ //    	unset($all['name']);
+ //    	unset($all['portfolios']);
+ //    	unset($all['status']);
     	
-    	if($portfolio->save()){
+ //    	if($portfolio->save()){
     		
-    		foreach ($social as $key => $value) {
-	    		if (!empty($value['url'])) {
-	    			$portfolioSocial = new PortfolioSocial();
-	    			$portfolioSocial->name = strtolower($social['name'][$key]);
-	    			$portfolioSocial->url = $social['url'][$key];
-	    			$portfolioSocial->portfolio_id = $portfolio->id;
-	    			$portfolio->portfolioSocial()->save($portfolioSocial);
-	    		}
-	    	}
+ //    		foreach ($social as $key => $value) {
+	//     		if (!empty($value['url'])) {
+	//     			$portfolioSocial = new PortfolioSocial();
+	//     			$portfolioSocial->name = strtolower($social['name'][$key]);
+	//     			$portfolioSocial->url = $social['url'][$key];
+	//     			$portfolioSocial->portfolio_id = $portfolio->id;
+	//     			$portfolio->portfolioSocial()->save($portfolioSocial);
+	//     		}
+	//     	}
 
-	    	if($useSkills){
-	    		$skills = array();
-	    		foreach ($all['skills']['name'] as $key => $value) {
-					if(empty($all['skills']['name'][$key]) || empty($all['skills']['percent'][$key])){
-		    			return Response::json(array('portfolioCreated' => false, 'message' => 'Please, complete the required fields', 'messageType' => 'danger'));
-		    		}
-					array_push($skills, $all['skills']['name'][$key].':'.$all['skills']['percent'][$key]);
-				}
-	    		$skills = implode(',', $skills);
-				$portfolio->skills = $skills;
-	    	}
+	//     	if($useSkills){
+	//     		$skills = array();
+	//     		foreach ($all['skills']['name'] as $key => $value) {
+	// 				if(empty($all['skills']['name'][$key]) || empty($all['skills']['percent'][$key])){
+	// 	    			return Response::json(array('portfolioCreated' => false, 'message' => 'Please, complete the required fields', 'messageType' => 'danger'));
+	// 	    		}
+	// 				array_push($skills, $all['skills']['name'][$key].':'.$all['skills']['percent'][$key]);
+	// 			}
+	//     		$skills = implode(',', $skills);
+	// 			$portfolio->skills = $skills;
+	//     	}
 
-		    foreach ($langs as $lang) {
-	        	$portfolioData = new PortfolioData();
-	        	$portfolioData->portfolio_id = $portfolio->id;
-	        	$portfolioData->lang = $lang->locale;
-	        	$portfolioData->content = Input::get($lang->locale.'-content');
+	// 	    foreach ($langs as $lang) {
+	//         	$portfolioData = new PortfolioData();
+	//         	$portfolioData->portfolio_id = $portfolio->id;
+	//         	$portfolioData->lang = $lang->locale;
+	//         	$portfolioData->content = Input::get($lang->locale.'-content');
 
-				$portfolio->portfolioData()->save($portfolioData);
-			}
+	// 			$portfolio->portfolioData()->save($portfolioData);
+	// 		}
 
-	    	return Response::json(array('portfolioCreated' => true, 'redirectUrl' => URL::route('indexPortfolios')));
-	   }else{
-	    	return Response::json(array('portfolioCreated' => false, 'message' => 'Error trying to save the current portfolio. Contact the Administrator', 'messageType' => 'danger'));
-	    }
-	}
+	//     	return Response::json(array('portfolioCreated' => true, 'redirectUrl' => URL::route('indexPortfolios')));
+	//    }else{
+	//     	return Response::json(array('portfolioCreated' => false, 'message' => 'Error trying to save the current portfolio. Contact the Administrator', 'messageType' => 'danger'));
+	//     }
+	// }
 
 
 	/**
@@ -209,7 +209,7 @@ class PortfolioController extends AdminController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function showPortfolio($id)
+	public function showPortfolio($id = 1)
 	{
 		$skills = array();
 		$social = array();
@@ -235,7 +235,7 @@ class PortfolioController extends AdminController {
 
 		$portfolio->projects = explode(',', $portfolio->projects);
 		$this->layout = View::make('blogfolio::portfolio.show', compact('langs', 'allLangs', 'galleries', 'projects', 'portfolio', 'skills'));
-        $this->layout->title = trans('Portoflios');
+        $this->layout->title = trans('Portoflio');
         $this->layout->breadcrumb = Config::get('syntara::breadcrumbs.portfolios');
 	}
 
@@ -267,7 +267,7 @@ class PortfolioController extends AdminController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function updatePortfolio($id)
+	public function updatePortfolio($id = 1)
 	{
 		if(!$id){
 			return Response::json(array('portfolioUpdated' => false, 'message' => 'Invalid Portfolio', 'messageType' => 'danger'));
@@ -285,7 +285,9 @@ class PortfolioController extends AdminController {
 		$langs = Language::where(array('status' => 1))->get();
 
 		$portfolio = Portfolio::find($id);
-		$portfolio->name = $all['name'];
+		$portfolio->first_name = $all['first_name'];
+		$portfolio->last_name = $all['last_name'];
+		$portfolio->dOB = $all['date_of_birth'];
 		$portfolio->status = $status;
 		$portfolio->use_skills = $useSkills;
 
@@ -394,18 +396,18 @@ class PortfolioController extends AdminController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function deletePortfolio($id)
-	{
-		if(!$id){
-			return Response::json(array('portfolioDeleted' => false, 'errorMessages' =>'Invalid Portfolio', 'messageType' => 'error'));
-		}
-        if(!Portfolio::find($id)->delete())
-        {
-            return Response::json(array('portfolioDeleted' => false, 'errorMessages' =>'Error al borrar el portfolio', 'messageType' => 'error'));
-        }
+	// public function deletePortfolio($id)
+	// {
+	// 	if(!$id){
+	// 		return Response::json(array('portfolioDeleted' => false, 'errorMessages' =>'Invalid Portfolio', 'messageType' => 'error'));
+	// 	}
+ //        if(!Portfolio::find($id)->delete())
+ //        {
+ //            return Response::json(array('portfolioDeleted' => false, 'errorMessages' =>'Error al borrar el portfolio', 'messageType' => 'error'));
+ //        }
 
-        return Response::json(array('portfolioDeleted' => true, 'message' => trans('El portfolio se ha borrado correctamente'), 'messageType' => 'success'));
-	}
+ //        return Response::json(array('portfolioDeleted' => true, 'message' => trans('El portfolio se ha borrado correctamente'), 'messageType' => 'success'));
+	// }
 
 
 	/**

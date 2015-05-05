@@ -48,7 +48,7 @@
                     </div>
                     <div class="form-group">
                         <label for="siteOffline">{{ trans('blogfolio::settings.siteOffline') }}</label>
-                            <input type="checkbox" class="form-control" id="siteOffline" name="site_offline" value='{{$settings['site_offline']}}'>
+                            <input type="checkbox" id="siteOffline" name="site_offline" {{($settings['site_offline'] == 1) ? 'checked' : ''}}>
                     </div>
                     <div class="box-footer">
                    		<button id="update-settings" class="btn btn-primary">{{ trans('syntara::all.update') }}</button>

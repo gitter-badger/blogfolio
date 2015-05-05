@@ -9,13 +9,13 @@
 </thead>
 <tbody>
     @foreach ($portfolios as $portfolio)
-    <tr onclick="document.location='{{ URL::route('showPortfolio', $portfolio->id)}}'">
+    <tr>
         <td style="text-align: center;" class="row1">
             <input type="checkbox" data-portfolio-id="{{ $portfolio->id }}">
         </td>
-        <td style="text-align: center;">{{ $portfolio->id }}</td>
-	    <td>{{ str_limit($portfolio->name, 100, '...') }}</td>
-	    <td>{{$portfolio->status}}</td>
+        <td style="text-align: center;" onclick="document.location='{{ URL::route('showPortfolio', $portfolio->id)}}'">{{ $portfolio->id }}</td>
+	    <td onclick="document.location='{{ URL::route('showPortfolio', $portfolio->id)}}'">{{ str_limit($portfolio->name, 100, '...') }}</td>
+	    <td onclick="document.location='{{ URL::route('showPortfolio', $portfolio->id)}}'">{{$portfolio->status}}</td>
     </tr>
     @endforeach
 </tbody>

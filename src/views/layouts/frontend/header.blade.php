@@ -3,7 +3,9 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-6 col-xs-4">
-                        <div class="top-number"><p><i class="fa fa-phone-square"></i>  +0123 456 70 90</p></div>
+                        @if (!empty($settings['site_phone']))
+                            <div class="top-number"><p><i class="fa fa-phone-square"></i>  {{$settings['site_phone']}}</p></div>
+                        @endif
                     </div>
                     <div class="col-sm-6 col-xs-8">
                        <div class="social">
@@ -35,16 +37,16 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="/"><img src="{{ asset("packages/ukadev/blogfolio/Blogfolio/front/images/logo.png") }}" alt="logo"></a>
+                    <a class="navbar-brand" href="/"><img src="{{ asset("packages/ukadev/blogfolio/front/images/logo.png") }}" alt="logo"></a>
                 </div>
                 
                 <div class="collapse navbar-collapse navbar-right">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="/">Home</a></li>
-                        <li><a href="/">About Me</a></li>
-                        <li><a href="/">Portfolio</a></li>
-                        <li><a href="/">Blog</a></li> 
-                        <li><a href="/">Contact</a></li>                        
+                        <li class="{{Active::route(array('frontIndex')); }}"><a href="/">Home</a></li>
+                        <li class="{{Active::route(array('frontAbout')); }}"><a href="/about">About Me</a></li>
+                        <li class="{{Active::route(array('frontPortfolio')); }}"><a href="/portfolio">Portfolio</a></li>
+                        <li class="{{Active::route(array('frontBlog')); }}"><a href="/blog">Blog</a></li> 
+                        <li class="{{Active::route(array('frontContact')); }}"><a href="/contact">Contact</a></li>                        
                     </ul>
                 </div>
             </div><!--/.container-->

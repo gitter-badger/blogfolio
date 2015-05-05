@@ -73,12 +73,12 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-4 col-md-3">
                     <div class="recent-work-wrap">
-                        <img class="img-responsive" src="{{ asset("packages/ukadev/blogfolio/Blogfolio/front/images/portfolio/recent/item1.png") }}" alt="">
+                        <img class="img-responsive" src="{{ asset("packages/ukadev/blogfolio/front/images/portfolio/recent/item1.png") }}" alt="">
                         <div class="overlay">
                             <div class="recent-work-inner">
                                 <h3><a href="#">Business theme</a> </h3>
                                 <p>There are many variations of passages of Lorem Ipsum available, but the majority</p>
-                                <a class="preview" href="{{ asset("packages/ukadev/blogfolio/Blogfolio/front/images/portfolio/full/item1.png") }}" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
+                                <a class="preview" href="{{ asset("packages/ukadev/blogfolio/front/images/portfolio/full/item1.png") }}" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
                             </div> 
                         </div>
                     </div>
@@ -86,12 +86,12 @@
 
                 <div class="col-xs-12 col-sm-4 col-md-3">
                     <div class="recent-work-wrap">
-                        <img class="img-responsive" src="{{ asset("packages/ukadev/blogfolio/Blogfolio/front/images/portfolio/recent/item2.png") }}" alt="">
+                        <img class="img-responsive" src="{{ asset("packages/ukadev/blogfolio/front/images/portfolio/recent/item2.png") }}" alt="">
                         <div class="overlay">
                             <div class="recent-work-inner">
                                 <h3><a href="#">Business theme</a></h3>
                                 <p>There are many variations of passages of Lorem Ipsum available, but the majority</p>
-                                <a class="preview" href="{{ asset("packages/ukadev/blogfolio/Blogfolio/front/images/portfolio/full/item2.png") }}" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
+                                <a class="preview" href="{{ asset("packages/ukadev/blogfolio/front/images/portfolio/full/item2.png") }}" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
                             </div> 
                         </div>
                     </div>
@@ -99,12 +99,12 @@
 
                 <div class="col-xs-12 col-sm-4 col-md-3">
                     <div class="recent-work-wrap">
-                        <img class="img-responsive" src="{{ asset("packages/ukadev/blogfolio/Blogfolio/front/images/portfolio/recent/item3.png") }}" alt="">
+                        <img class="img-responsive" src="{{ asset("packages/ukadev/blogfolio/front/images/portfolio/recent/item3.png") }}" alt="">
                         <div class="overlay">
                             <div class="recent-work-inner">
                                 <h3><a href="#">Business theme </a></h3>
                                 <p>There are many variations of passages of Lorem Ipsum available, but the majority</p>
-                                <a class="preview" href="{{ asset("packages/ukadev/blogfolio/Blogfolio/front/images/portfolio/full/item3.png") }}" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
+                                <a class="preview" href="{{ asset("packages/ukadev/blogfolio/front/images/portfolio/full/item3.png") }}" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
                             </div> 
                         </div>
                     </div>
@@ -112,12 +112,12 @@
 
                 <div class="col-xs-12 col-sm-4 col-md-3">
                     <div class="recent-work-wrap">
-                        <img class="img-responsive" src="{{ asset("packages/ukadev/blogfolio/Blogfolio/front/images/portfolio/recent/item4.png") }}" alt="">
+                        <img class="img-responsive" src="{{ asset("packages/ukadev/blogfolio/front/images/portfolio/recent/item4.png") }}" alt="">
                         <div class="overlay">
                             <div class="recent-work-inner">
                                 <h3><a href="#">Business theme </a></h3>
                                 <p>There are many variations of passages of Lorem Ipsum available, but the majority</p>
-                                <a class="preview" href="{{ asset("packages/ukadev/blogfolio/Blogfolio/front/images/portfolio/full/item4.png") }}" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
+                                <a class="preview" href="{{ asset("packages/ukadev/blogfolio/front/images/portfolio/full/item4.png") }}" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
                             </div> 
                         </div>
                     </div>
@@ -125,12 +125,12 @@
                 
                 <div class="col-xs-12 col-sm-4 col-md-3">
                     <div class="recent-work-wrap">
-                        <img class="img-responsive" src="{{ asset("packages/ukadev/blogfolio/Blogfolio/front/images/portfolio/recent/item5.png") }}" alt="">
+                        <img class="img-responsive" src="{{ asset("packages/ukadev/blogfolio/front/images/portfolio/recent/item5.png") }}" alt="">
                         <div class="overlay">
                             <div class="recent-work-inner">
                                 <h3><a href="#">Business theme</a></h3>
                                 <p>There are many variations of passages of Lorem Ipsum available, but the majority</p>
-                                <a class="preview" href="{{ asset("packages/ukadev/blogfolio/Blogfolio/front/images/portfolio/full/item5.png") }}" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
+                                <a class="preview" href="{{ asset("packages/ukadev/blogfolio/front/images/portfolio/full/item5.png") }}" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
                             </div> 
                         </div>
                     </div>
@@ -138,12 +138,12 @@
 
                 <div class="col-xs-12 col-sm-4 col-md-3">
                     <div class="recent-work-wrap">
-                        <img class="img-responsive" src="{{ asset("packages/ukadev/blogfolio/Blogfolio/front/images/portfolio/recent/item6.png") }}" alt="">
+                        <img class="img-responsive" src="{{ asset("packages/ukadev/blogfolio/front/images/portfolio/recent/item6.png") }}" alt="">
                         <div class="overlay">
                             <div class="recent-work-inner">
                                 <h3><a href="#">Business theme </a></h3>
                                 <p>There are many variations of passages of Lorem Ipsum available, but the majority</p>
-                                <a class="preview" href="{{ asset("packages/ukadev/blogfolio/Blogfolio/front/images/portfolio/full/item6.png") }}" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
+                                <a class="preview" href="{{ asset("packages/ukadev/blogfolio/front/images/portfolio/full/item6.png") }}" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
                             </div> 
                         </div>
                     </div>
@@ -151,12 +151,12 @@
 
                 <div class="col-xs-12 col-sm-4 col-md-3">
                     <div class="recent-work-wrap">
-                        <img class="img-responsive" src="{{ asset("packages/ukadev/blogfolio/Blogfolio/front/images/portfolio/recent/item7.png") }}" alt="">
+                        <img class="img-responsive" src="{{ asset("packages/ukadev/blogfolio/front/images/portfolio/recent/item7.png") }}" alt="">
                         <div class="overlay">
                             <div class="recent-work-inner">
                                 <h3><a href="#">Business theme </a></h3>
                                 <p>There are many variations of passages of Lorem Ipsum available, but the majority</p>
-                                <a class="preview" href="{{ asset("packages/ukadev/blogfolio/Blogfolio/front/images/portfolio/full/item7.png") }}" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
+                                <a class="preview" href="{{ asset("packages/ukadev/blogfolio/front/images/portfolio/full/item7.png") }}" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
                             </div> 
                         </div>
                     </div>
@@ -164,12 +164,12 @@
 
                 <div class="col-xs-12 col-sm-4 col-md-3">
                     <div class="recent-work-wrap">
-                        <img class="img-responsive" src="{{ asset("packages/ukadev/blogfolio/Blogfolio/front/images/portfolio/recent/item8.png") }}" alt="">
+                        <img class="img-responsive" src="{{ asset("packages/ukadev/blogfolio/front/images/portfolio/recent/item8.png") }}" alt="">
                         <div class="overlay">
                             <div class="recent-work-inner">
                                 <h3><a href="#">Business theme </a></h3>
                                 <p>There are many variations of passages of Lorem Ipsum available, but the majority</p>
-                                <a class="preview" href="{{ asset("packages/ukadev/blogfolio/Blogfolio/front/images/portfolio/full/item8.png") }}" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
+                                <a class="preview" href="{{ asset("packages/ukadev/blogfolio/front/images/portfolio/full/item8.png") }}" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
                             </div> 
                         </div>
                     </div>
@@ -244,7 +244,7 @@
                               <div class="panel-body">
                                   <div class="media accordion-inner">
                                         <div class="pull-left">
-                                            <img class="img-responsive" src="{{ asset("packages/ukadev/blogfolio/Blogfolio/front/images/accordion1.png") }}">
+                                            <img class="img-responsive" src="{{ asset("packages/ukadev/blogfolio/front/images/accordion1.png") }}">
                                         </div>
                                         <div class="media-body">
                                              <h4>Adipisicing elit</h4>
@@ -309,94 +309,23 @@
             </div><!--/.row-->
         </div><!--/.container-->
     </section><!--/#middle-->
-
-    <section id="content">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-sm-8 wow fadeInDown">
-                   <div class="tab-wrap"> 
-                        <div class="media">
-                            <div class="parrent pull-left">
-                                <ul class="nav nav-tabs nav-stacked">
-                                    <li class=""><a href="#tab1" data-toggle="tab" class="analistic-01">Responsive Web Design</a></li>
-                                    <li class="active"><a href="#tab2" data-toggle="tab" class="analistic-02">Premium Plugin Included</a></li>
-                                    <li class=""><a href="#tab3" data-toggle="tab" class="tehnical">Predefine Layout</a></li>
-                                    <li class=""><a href="#tab4" data-toggle="tab" class="tehnical">Our Philosopy</a></li>
-                                    <li class=""><a href="#tab5" data-toggle="tab" class="tehnical">What We Do?</a></li>
-                                </ul>
-                            </div>
-
-                            <div class="parrent media-body">
-                                <div class="tab-content">
-                                    <div class="tab-pane fade" id="tab1">
-                                        <div class="media">
-                                           <div class="pull-left">
-                                                <img class="img-responsive" src="{{ asset("packages/ukadev/blogfolio/Blogfolio/front/images/tab2.png") }}">
-                                            </div>
-                                            <div class="media-body">
-                                                 <h2>Adipisicing elit</h2>
-                                                 <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                     <div class="tab-pane fade active in" id="tab2">
-                                        <div class="media">
-                                           <div class="pull-left">
-                                                <img class="img-responsive" src="{{ asset("packages/ukadev/blogfolio/Blogfolio/front/images/tab1.png") }}">
-                                            </div>
-                                            <div class="media-body">
-                                                 <h2>Adipisicing elit</h2>
-                                                 <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use.
-                                                 </p>
-                                            </div>
-                                        </div>
-                                     </div>
-
-                                     <div class="tab-pane fade" id="tab3">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit.</p>
-                                     </div>
-                                     
-                                     <div class="tab-pane fade" id="tab4">
-                                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words</p>
-                                     </div>
-
-                                     <div class="tab-pane fade" id="tab5">
-                                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures,</p>
-                                     </div>
-                                </div> <!--/.tab-content-->  
-                            </div> <!--/.media-body--> 
-                        </div> <!--/.media-->     
-                    </div><!--/.tab-wrap-->               
-                </div><!--/.col-sm-6-->
-
-                <div class="col-xs-12 col-sm-4 wow fadeInDown">
-                    <div class="testimonial">
-                        <h2>Testimonials</h2>
-                         <div class="media testimonial-inner">
+    @if (!empty($settings['site_phone']))
+        <section id="contact-info">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="media contact-info wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
                             <div class="pull-left">
-                                <img class="img-responsive img-circle" src="{{ asset("packages/ukadev/blogfolio/Blogfolio/front/images/testimonials1.png") }}">
+                                <i class="fa fa-phone"></i>
                             </div>
                             <div class="media-body">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt</p>
-                                <span><strong>-John Doe/</strong> Director of corlate.com</span>
+                                <h2>Have a question or need a custom quote?</h2>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation {{$settings['site_phone']}}</p>
                             </div>
-                         </div>
-
-                         <div class="media testimonial-inner">
-                            <div class="pull-left">
-                                <img class="img-responsive img-circle" src="{{ asset("packages/ukadev/blogfolio/Blogfolio/front/images/testimonials1.png") }}">
-                            </div>
-                            <div class="media-body">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt</p>
-                                <span><strong>-John Doe/</strong> Director of corlate.com</span>
-                            </div>
-                         </div>
-
+                        </div>
                     </div>
                 </div>
-            </div><!--/.row-->
-        </div><!--/.container-->
-    </section><!--/#content-->
-<!-- /.content -->
+            </div><!--/.container-->    
+        </section><!--/#contact-info-->
+    @endif
 @stop

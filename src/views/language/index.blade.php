@@ -3,7 +3,7 @@
 @section('content')
 <script src="{{ asset('packages/ukadev/blogfolio/js/dashboard/languages.js') }}"></script>
 
-@include('syntara::layouts.dashboard.confirmation-modal',  array('title' => trans('syntara::all.confirm-delete-title'), 'content' => trans('syntara::all.confirm-delete-language'), 'type' => 'delete-project'))
+@include('syntara::layouts.dashboard.confirmation-modal',  array('title' => trans('syntara::all.confirm-delete-title'), 'content' => trans('Are you sure you want to delete it?'), 'type' => 'delete-language'))
 
 <div class="row">
     <div class="col-lg-9">
